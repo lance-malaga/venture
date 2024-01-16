@@ -9,6 +9,7 @@
 ## Team members
 + Lance Malaga
 + Jerry On
++ Justin Ma
 
 ## APIs
 
