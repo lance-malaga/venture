@@ -8,16 +8,18 @@ export default function Home() {
 		<>
 			<CustomHead name={'Home Page'}/>
 			<div className={styles.home__container}>
-				<Header/>
-				<main>
-					<div className={styles.title__container}>
-						<h1>City Of Vancouver</h1>
-						<p>Welcome to Venture! Explore Vancouver's diverse neighborhoods to find the perfect match for your lifestyle.</p>
-					</div>
-					<div>
+				<div className={styles.content__container}>
+					<Header/>
+					<main>
+						<div className={styles.title__container}>
+							<h1>City Of Vancouver</h1>
+							<p>Welcome to Venture! Explore Vancouver's diverse neighborhoods to find the perfect match for your lifestyle.</p>
+						</div>
+						<div>
 
-					</div>
-				</main>
+						</div>
+					</main>
+				</div>
 			</div>
 			<Footer/>
 		</>		

@@ -1,7 +1,9 @@
 .home__container {
-    
-    max-width: 1280px;
+    padding: 0 80px;
     padding-top: 60px;
+}
+.content__container {
+    max-width: 1280px;
     margin: 0 auto;
 }
 
@@ -19,4 +21,11 @@
 .title__container p {
     max-width: 630px;
     margin: 0 auto;
+}
+
+@media (min-width: 1280px) {
+    .home__container {
+        /* padding: 0 80px;
+        padding-top: 60px; */
+    }
 }
