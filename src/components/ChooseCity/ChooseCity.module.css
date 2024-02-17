@@ -1,0 +1,18 @@
+.choose_city__container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    justify-content: center;
+}
+
+.choose_city__container h5 {
+    font-weight: bold;
+    font-size: 20px;
+    letter-spacing: 2px;
+}
+
+.choose_city__container hr {
+    height: 0;
+    border-top: 5px solid var(--color-black);
+    width: 40%;
+}
