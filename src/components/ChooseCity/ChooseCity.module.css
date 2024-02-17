@@ -4,15 +4,37 @@
     gap: 50px;
     justify-content: center;
 }
-
 .choose_city__container h5 {
     font-weight: bold;
     font-size: 20px;
     letter-spacing: 2px;
 }
-
 .choose_city__container hr {
     height: 0;
     border-top: 5px solid var(--color-black);
     width: 40%;
+    margin-bottom: 20px;
+}
+
+.side_nav {
+    height: 640px;
+    position: relative;
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+.city {
+    transition: 0.3s all ease-in-out;
+    cursor: pointer;
+}
+.city:hover {
+    color: var(--color-gray);
+    opacity: 0.7;
+}
+.city p {
+    margin-bottom: 5px;
+}
+.city img {
+    width: 100%;
 }
