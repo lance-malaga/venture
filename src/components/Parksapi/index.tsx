@@ -31,15 +31,10 @@ const Parksapi = () => {
     const [parks, setParks] = useState<Park[]>([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
-    const [showParks, setShowParks] = useState(true); 
+    const [filter, setFilter] = useState('');
+    const [activeParkId, setActiveParkId] = useState<number | null>(null); 
   
     const fetchParksData = async () => {
-      if (!showParks) {
-       
-        setShowParks(true);
-        return;
-      }
-  
       setLoading(true);
       setError(null);
       try {
@@ -48,11 +43,7 @@ const Parksapi = () => {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data: ParksApiResponse = await response.json();
-        if (data.results) {
-          setParks(data.results);
-        } else {
-          setError('No results found in the response');
-        }
+        setParks(data.results);
       } catch (err) {
         console.error('Error fetching parks data:', err);
         setError('Failed to fetch parks data.');
@@ -65,28 +56,53 @@ const Parksapi = () => {
       fetchParksData();
     }, []);
   
-    
-    const toggleParksVisibility = () => {
-      if (loading) return; 
-      setShowParks(!showParks);
-    };
+    const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setFilter(event.target.value);
+      };
+      
+  
+    const handleParkClick = (parkId: number) => {
+        setActiveParkId(activeParkId === parkId ? null : parkId);
+      };
+  
+      const filteredParks = parks.filter(park => 
+        park.name.includes(filter)
+      );
+      
   
     return (
       <div>
+        <input
+          type="text"
+          className={styles.filterInput}
+          placeholder="Search Park Name..."
+          value={filter}
+          onChange={handleFilterChange}
+        />
         <button 
           className={styles.button}
-          onClick={toggleParksVisibility}
+          onClick={fetchParksData}
           disabled={loading}
         >
-          {loading ? 'Loading...' : (showParks ? 'View Parks' : 'View Parks')}
+          {loading ? 'Loading...' : 'Search'}
         </button>
   
         {error && <div className={styles.error}>Error: {error}</div>}
-        {showParks && !loading && !error && parks.length > 0 && (
-          parks.map((park) => (
+        {!loading && !error && filteredParks.length > 0 && (
+          filteredParks.map((park) => (
             <div key={park.parkid} className={styles.park}>
-              <h2 className={styles.parkName}>{park.name}</h2>
-              {}
+              <h2 className={styles.parkName} onClick={() => handleParkClick(park.parkid)}>
+                {park.name}
+              </h2>
+              {activeParkId === park.parkid && (
+                <div>
+                  <p>Official: {park.official}</p>
+                  <p>Advisories: {park.advisories}</p>
+                  <p>Special Features: {park.specialfeatures}</p>
+                  <p>Facilities: {park.facilities}</p>
+                  <p>Washrooms: {park.washrooms}</p>
+                </div>
+              )}
             </div>
           ))
         )}
