@@ -9,6 +9,7 @@
     border-radius: 0.25rem;
     border: none;
     cursor: pointer;
+    
   }
   
   .button:hover,
@@ -34,8 +35,14 @@
   }
   
   .parkName {
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-weight: bold;
   }
   
+  .showMoreButton {
+    color: #007bff; 
+    border: none;
+    font-size: 0.90rem; 
+    transition: background-color 0.3s ease;
+  }
   
