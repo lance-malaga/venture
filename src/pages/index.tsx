@@ -18,7 +18,7 @@ export default function Home() {
                     <Header/>
                     <main>
                         <PageTitle desc={`Welcome to Venture! Explore Vancouver's diverse neighborhoods to find the perfect match for your lifestyle.`}/>
-                        <Parksapi /> {}
+						<Parksapi /> {}
                         <ChooseCity/>
                     </main>
                 </div>
