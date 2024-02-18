@@ -6,7 +6,6 @@ import Header from "@/components/Header";
 import CustomHead from '@/components/CustomHead';
 import PageTitle from '@/components/PageTitle';
 import ChooseCity from '@/components/ChooseCity';
-import Link from 'next/link';
 
 
 export default function Home() {
