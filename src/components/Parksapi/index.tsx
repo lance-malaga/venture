@@ -22,6 +22,7 @@ const Parksapi = () => {
   const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [activeFilter, setActiveFilter] = useState('');
+  const [activeParkId, setActiveParkId] = useState<number | null>(null);
 
   const fetchParksData = async () => {
     setLoading(true);
@@ -49,19 +50,9 @@ const Parksapi = () => {
     setSearchTerm(event.target.value);
   };
 
-  const performSearch = () => {
-
+  const toggleParkDetails = (parkid: number) => {
+    setActiveParkId(activeParkId === parkid ? null : parkid);
   };
-
-  const applyFilter = (feature: string) => {
-    setActiveFilter(activeFilter === feature ? '' : feature);
-  };
-
-  const filteredParks = parks.filter(park => {
-    const matchesSearchTerm = park.name.includes(searchTerm);
-    const matchesFeatureFilter = activeFilter ? park[activeFilter as keyof Park] === 'Y' : true;
-    return matchesSearchTerm && matchesFeatureFilter;
-  });
 
   return (
     <div>
@@ -72,14 +63,14 @@ const Parksapi = () => {
         value={searchTerm}
         onChange={handleSearchChange}
       />
-      <button onClick={performSearch} className={styles.searchButton}>Search</button>
+      <button className={styles.searchButton}>Search</button>
 
       <div className={styles.filterButtons}>
         {['official', 'advisories', 'specialfeatures', 'facilities', 'washrooms'].map((feature) => (
           <button
             key={feature}
             className={`${styles.filterButton} ${activeFilter === feature ? styles.activeFilter : ''}`}
-            onClick={() => applyFilter(feature)}
+            onClick={() => setActiveFilter(activeFilter === feature ? '' : feature)}
           >
             {feature.charAt(0).toUpperCase() + feature.slice(1)}
           </button>
@@ -91,11 +82,25 @@ const Parksapi = () => {
       {loading ? (
         <p>Loading parks...</p>
       ) : (
-        filteredParks.map((park) => (
-          <div key={park.parkid} className={styles.park}>
-            <h2 className={styles.parkName}>{park.name}</h2>
-          </div>
-        ))
+        parks.filter(park => park.name.includes(searchTerm) && (activeFilter ? park[activeFilter as keyof Park] === 'Y' : true))
+          .map((park) => (
+            <div key={park.parkid} className={styles.park}>
+              <h2 className={styles.parkName} onClick={() => toggleParkDetails(park.parkid)}>{park.name}</h2>
+              {activeParkId === park.parkid && (
+                <div>
+                  <p>Official: {park.official}</p>
+                  <p>Advisories: {park.advisories}</p>
+                  <p>Special Features: {park.specialfeatures}</p>
+                  <p>Facilities: {park.facilities}</p>
+                  <p>Washrooms: {park.washrooms}</p>
+      
+                  <button className={styles.showMoreButton} onClick={() => toggleParkDetails(park.parkid)}>
+                    {activeParkId === park.parkid ? 'Show Less' : 'Show More'}
+                  </button>
+                </div>
+              )}
+            </div>
+          ))
       )}
     </div>
   );
