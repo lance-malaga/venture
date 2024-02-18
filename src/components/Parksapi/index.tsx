@@ -4,22 +4,11 @@ import styles from './Parksapi.module.css';
 interface Park {
   parkid: number;
   name: string;
-  official: number;
+  official: string;
   advisories: string;
   specialfeatures: string;
   facilities: string;
   washrooms: string;
-  streetnumber: string;
-  streetname: string;
-  ewstreet: string;
-  nsstreet: string;
-  neighbourhoodname: string;
-  neighbourhoodurl: string;
-  hectare: number;
-  googlemapdest: {
-    lon: number;
-    lat: number;
-  };
 }
 
 interface ParksApiResponse {
@@ -31,8 +20,8 @@ const Parksapi = () => {
   const [parks, setParks] = useState<Park[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [filter, setFilter] = useState('');
-  const [activeParkId, setActiveParkId] = useState<number | null>(null);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [activeFilter, setActiveFilter] = useState('');
 
   const fetchParksData = async () => {
     setLoading(true);
@@ -56,55 +45,55 @@ const Parksapi = () => {
     fetchParksData();
   }, []);
 
-  const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setFilter(event.target.value);
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(event.target.value);
   };
 
-  const handleParkToggle = (parkId: number) => {
-    setActiveParkId(activeParkId === parkId ? null : parkId);
+  const performSearch = () => {
+
   };
 
-  const filteredParks = parks.filter(park => park.name.toLowerCase().includes(filter.toLowerCase()));
+  const applyFilter = (feature: string) => {
+    setActiveFilter(activeFilter === feature ? '' : feature);
+  };
+
+  const filteredParks = parks.filter(park => {
+    const matchesSearchTerm = park.name.includes(searchTerm);
+    const matchesFeatureFilter = activeFilter ? park[activeFilter as keyof Park] === 'Y' : true;
+    return matchesSearchTerm && matchesFeatureFilter;
+  });
 
   return (
     <div>
       <input
         type="text"
-        className={styles.filterInput}
+        className={styles.searchInput}
         placeholder="Search Park Name..."
-        value={filter}
-        onChange={handleFilterChange}
+        value={searchTerm}
+        onChange={handleSearchChange}
       />
-      <button 
-        className={styles.button}
-        onClick={fetchParksData}
-        disabled={loading}
-      >
-        {loading ? 'Loading...' : 'Search'}
-      </button>
+      <button onClick={performSearch} className={styles.searchButton}>Search</button>
+
+      <div className={styles.filterButtons}>
+        {['official', 'advisories', 'specialfeatures', 'facilities', 'washrooms'].map((feature) => (
+          <button
+            key={feature}
+            className={`${styles.filterButton} ${activeFilter === feature ? styles.activeFilter : ''}`}
+            onClick={() => applyFilter(feature)}
+          >
+            {feature.charAt(0).toUpperCase() + feature.slice(1)}
+          </button>
+        ))}
+      </div>
 
       {error && <div className={styles.error}>Error: {error}</div>}
-      {!loading && !error && filteredParks.length > 0 && (
+
+      {loading ? (
+        <p>Loading parks...</p>
+      ) : (
         filteredParks.map((park) => (
           <div key={park.parkid} className={styles.park}>
-            <h2 className={styles.parkName}>
-              {park.name}
-            </h2>
-            <button 
-              className={styles.showMoreButton}
-              onClick={() => handleParkToggle(park.parkid)}
-            >
-              {activeParkId === park.parkid ? 'Show Less' : 'Show More'}
-            </button>
-            {activeParkId === park.parkid && (
-              <div>
-                <p>Official: {park.official}</p>
-                <p>Advisories: {park.advisories}</p>
-                <p>Special Features: {park.specialfeatures}</p>
-                <p>Facilities: {park.facilities}</p>
-                <p>Washrooms: {park.washrooms}</p>
-              </div>
-            )}
+            <h2 className={styles.parkName}>{park.name}</h2>
           </div>
         ))
       )}
