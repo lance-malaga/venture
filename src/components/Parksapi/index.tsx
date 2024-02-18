@@ -1,5 +1,5 @@
-
 import React, { useState, useEffect } from 'react';
+import styles from './Parksapi.module.css'; 
 
 interface Park {
   parkid: number;
@@ -61,18 +61,18 @@ const Parksapi = () => {
   return (
     <div>
       <button 
-        className="mb-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        className={styles.button}
         onClick={fetchParksData}
         disabled={loading}
       >
         {loading ? 'Loading...' : 'Refresh Parks Data'}
       </button>
 
-      {error && <div className="text-red-600">Error: {error}</div>}
+      {error && <div className={styles.error}>Error: {error}</div>}
       {!loading && !error && parks.length > 0 && (
         parks.map((park) => (
-          <div key={park.parkid} className="bg-gray-200 m-2 p-4 rounded shadow-lg">
-            <h2 className="font-bold text-lg">{park.name}</h2>
+          <div key={park.parkid} className={styles.park}>
+            <h2 className={styles.parkName}>{park.name}</h2>
             {}
           </div>
         ))
