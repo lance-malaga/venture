@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styles from './Parksapi.module.css'; 
+import styles from './Parksapi.module.css';
 
 interface Park {
   parkid: number;
@@ -28,86 +28,88 @@ interface ParksApiResponse {
 }
 
 const Parksapi = () => {
-    const [parks, setParks] = useState<Park[]>([]);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState<string | null>(null);
-    const [filter, setFilter] = useState('');
-    const [activeParkId, setActiveParkId] = useState<number | null>(null); 
-  
-    const fetchParksData = async () => {
-      setLoading(true);
-      setError(null);
-      try {
-        const response = await fetch('https://opendata.vancouver.ca/api/explore/v2.1/catalog/datasets/parks/records?limit=20');
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data: ParksApiResponse = await response.json();
-        setParks(data.results);
-      } catch (err) {
-        console.error('Error fetching parks data:', err);
-        setError('Failed to fetch parks data.');
-      } finally {
-        setLoading(false);
+  const [parks, setParks] = useState<Park[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [filter, setFilter] = useState('');
+  const [activeParkId, setActiveParkId] = useState<number | null>(null);
+
+  const fetchParksData = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await fetch('https://opendata.vancouver.ca/api/explore/v2.1/catalog/datasets/parks/records?limit=20');
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
-    };
-  
-    useEffect(() => {
-      fetchParksData();
-    }, []);
-  
-    const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setFilter(event.target.value);
-      };
-      
-  
-    const handleParkClick = (parkId: number) => {
-        setActiveParkId(activeParkId === parkId ? null : parkId);
-      };
-  
-      const filteredParks = parks.filter(park => 
-        park.name.includes(filter)
-      );
-      
-  
-    return (
-      <div>
-        <input
-          type="text"
-          className={styles.filterInput}
-          placeholder="Search Park Name..."
-          value={filter}
-          onChange={handleFilterChange}
-        />
-        <button 
-          className={styles.button}
-          onClick={fetchParksData}
-          disabled={loading}
-        >
-          {loading ? 'Loading...' : 'Search'}
-        </button>
-  
-        {error && <div className={styles.error}>Error: {error}</div>}
-        {!loading && !error && filteredParks.length > 0 && (
-          filteredParks.map((park) => (
-            <div key={park.parkid} className={styles.park}>
-              <h2 className={styles.parkName} onClick={() => handleParkClick(park.parkid)}>
-                {park.name}
-              </h2>
-              {activeParkId === park.parkid && (
-                <div>
-                  <p>Official: {park.official}</p>
-                  <p>Advisories: {park.advisories}</p>
-                  <p>Special Features: {park.specialfeatures}</p>
-                  <p>Facilities: {park.facilities}</p>
-                  <p>Washrooms: {park.washrooms}</p>
-                </div>
-              )}
-            </div>
-          ))
-        )}
-      </div>
-    );
+      const data: ParksApiResponse = await response.json();
+      setParks(data.results);
+    } catch (err) {
+      console.error('Error fetching parks data:', err);
+      setError('Failed to fetch parks data.');
+    } finally {
+      setLoading(false);
+    }
   };
-  
-  export default Parksapi;
+
+  useEffect(() => {
+    fetchParksData();
+  }, []);
+
+  const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFilter(event.target.value);
+  };
+
+  const handleParkToggle = (parkId: number) => {
+    setActiveParkId(activeParkId === parkId ? null : parkId);
+  };
+
+  const filteredParks = parks.filter(park => park.name.toLowerCase().includes(filter.toLowerCase()));
+
+  return (
+    <div>
+      <input
+        type="text"
+        className={styles.filterInput}
+        placeholder="Search Park Name..."
+        value={filter}
+        onChange={handleFilterChange}
+      />
+      <button 
+        className={styles.button}
+        onClick={fetchParksData}
+        disabled={loading}
+      >
+        {loading ? 'Loading...' : 'Search'}
+      </button>
+
+      {error && <div className={styles.error}>Error: {error}</div>}
+      {!loading && !error && filteredParks.length > 0 && (
+        filteredParks.map((park) => (
+          <div key={park.parkid} className={styles.park}>
+            <h2 className={styles.parkName}>
+              {park.name}
+            </h2>
+            <button 
+              className={styles.showMoreButton}
+              onClick={() => handleParkToggle(park.parkid)}
+            >
+              {activeParkId === park.parkid ? 'Show Less' : 'Show More'}
+            </button>
+            {activeParkId === park.parkid && (
+              <div>
+                <p>Official: {park.official}</p>
+                <p>Advisories: {park.advisories}</p>
+                <p>Special Features: {park.specialfeatures}</p>
+                <p>Facilities: {park.facilities}</p>
+                <p>Washrooms: {park.washrooms}</p>
+              </div>
+            )}
+          </div>
+        ))
+      )}
+    </div>
+  );
+};
+
+export default Parksapi;
