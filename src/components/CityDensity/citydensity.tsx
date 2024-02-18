@@ -10,7 +10,7 @@ const CityDensity: React.FC<CityDensityProps> = ({ selectedOption }) => {
   const [cityData, setCityData] = useState<any>({});
 
   useEffect(() => {    
-    fetch('/citydata/citydata.json')
+    fetch('/data/citydata.json')
       .then(response => response.json())
       .then(data => {       
         const matchedData = data.find((item: any) => item["Region Name"] === selectedOption);
