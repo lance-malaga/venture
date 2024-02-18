@@ -7,6 +7,7 @@ import CustomHead from '@/components/CustomHead';
 import PageTitle from '@/components/PageTitle';
 import ChooseCity from '@/components/ChooseCity';
 
+
 export default function Home() {
 	return (
 		<>
