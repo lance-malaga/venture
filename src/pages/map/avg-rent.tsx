@@ -3,13 +3,12 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import CustomHead from '@/components/CustomHead';
 import PageTitle from '@/components/PageTitle';
-import ChooseCity from '@/components/ChooseCity';
-import styles from '@/styles/Home.module.css';
-import { apiKey } from "../avg-rent/api-key.json";
+import styles from '@/styles/AvgRent.module.css';
 
-export default function Home() {
+export default function AvgRent() {
     const [selectedCity, setSelectedCity] = useState("");
     const [costData, setCostData] = useState(null);
+    const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
     const citiesRent = [
         {
@@ -50,7 +49,7 @@ export default function Home() {
             const options = {
                 method: 'GET',
                 headers: {
-                    'X-RapidAPI-Key': apiKey,
+                    'X-RapidAPI-Key': apiKey ?? '',
                     'X-RapidAPI-Host': 'cities-cost-of-living-and-average-prices-api.p.rapidapi.com'
                 }
             };
