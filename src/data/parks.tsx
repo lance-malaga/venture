@@ -9,7 +9,7 @@ export const parks = [
         park : 'Garry Point Park, Minoru Park, Iona Beach Regional Park, Richmond Nature Park, Terra Nova',
     },
     {
-        city : 'West Vancouver',
+        city : 'Westvan',
         park : 'Ambleside Park, Caulfeild Park, Cypress Falls Park, Dundarave Park, Lighthouse Park',
     },
     {
