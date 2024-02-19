@@ -10,7 +10,7 @@ import CityDensity from '@/components/CityDensity/citydensity';
 import { useState } from 'react';
 
 
-export default function test() {
+export default function Density() {
     const [selectedOption, setSelectedOption] = useState<string>('Vancouver');
 
     const handleSelect = (selectedValue: string) => {
