@@ -16,7 +16,7 @@ export default function Home() {
 				<div className={styles.content__container}>
 					<Header/>
 					<main>
-						<PageTitle desc={`Welcome to Venture! Explore Vancouver's diverse neighborhoods to find the perfect match for your lifestyle.`}/>
+						<PageTitle desc={`Welcome to Venture! Explore Metro Vancouver's diverse neighborhoods to find the perfect match for your lifestyle.`}/>
 						<ChooseCity/>
 					</main>
 				</div>
