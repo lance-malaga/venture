@@ -1,107 +1,93 @@
 import React, { useState, useEffect } from 'react';
+import { parks as localParksData } from '@/data/parks';
 import styles from './Parksapi.module.css';
+import Image from 'next/image';
 
 interface Park {
-  parkid: number;
-  name: string;
-  official: string;
-  advisories: string;
-  specialfeatures: string;
-  facilities: string;
-  washrooms: string;
+  park: string;
+  city: string;
 }
 
-interface ParksApiResponse {
-  total_count: number;
-  results: Park[];
+interface CityParkInfoProps {
+  city: string;
+  parks: Park[];
 }
+
+const CityParkInfo: React.FC<CityParkInfoProps> = ({ city, parks }) => {
+  return (
+    <div className={styles.cityInfoBox}>
+      <h3>
+        {city} Parks 
+      </h3>
+      <div className={styles.parkDetails}>
+        <span className={styles.green5}>05</span>
+        <Image
+          src="/images/parks/tree.png" 
+          alt="tree"
+          width={100}
+          height={100}
+        />
+      </div>
+      <ul className={styles.parksList}>
+        {parks.map((park, index) => (
+          <li key={index}>{park.park}</li>
+        ))}
+      </ul>
+    </div>
+  );
+};
 
 const Parksapi = () => {
-  const [parks, setParks] = useState<Park[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [activeFilter, setActiveFilter] = useState('');
-  const [activeParkId, setActiveParkId] = useState<number | null>(null);
-
-  const fetchParksData = async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const response = await fetch('https://opendata.vancouver.ca/api/explore/v2.1/catalog/datasets/parks/records?limit=20');
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const data: ParksApiResponse = await response.json();
-      setParks(data.results);
-    } catch (err) {
-      console.error('Error fetching parks data:', err);
-      setError('Failed to fetch parks data.');
-    } finally {
-      setLoading(false);
-    }
-  };
+  const [selectedCity, setSelectedCity] = useState<string>('Vancouver');
+  const [parks, setParks] = useState<Park[]>(localParksData);
 
   useEffect(() => {
+    const fetchParksData = async () => {
+      try {
+        const response = await fetch('https://opendata.vancouver.ca/api/explore/v2.1/catalog/datasets/parks/records?limit=20');
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const apiData = await response.json();
+        const parksData: Park[] = apiData.results.map((record: any) => ({
+          park: record.name,
+          city: 'Vancouver',
+        }));
+        setParks(prevParks => [...prevParks, ...parksData]);
+      } catch (err) {
+        console.error('Error fetching parks data:', err);
+      }
+    };
+
     fetchParksData();
   }, []);
 
-  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(event.target.value);
+  const handleCityChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedCity(event.target.value);
   };
 
-  const toggleParkDetails = (parkid: number) => {
-    setActiveParkId(activeParkId === parkid ? null : parkid);
-  };
+  const cities = Array.from(new Set(parks.map(park => park.city)));
+
+  const filteredParks = parks.filter(park => park.city === selectedCity);
 
   return (
     <div>
-      <input
-        type="text"
-        className={styles.searchInput}
-        placeholder="Search Park Name..."
-        value={searchTerm}
-        onChange={handleSearchChange}
-      />
-      <button className={styles.searchButton}>Search</button>
-
-      <div className={styles.filterButtons}>
-        {['official', 'advisories', 'specialfeatures', 'facilities', 'washrooms'].map((feature) => (
-          <button
-            key={feature}
-            className={`${styles.filterButton} ${activeFilter === feature ? styles.activeFilter : ''}`}
-            onClick={() => setActiveFilter(activeFilter === feature ? '' : feature)}
-          >
-            {feature.charAt(0).toUpperCase() + feature.slice(1)}
-          </button>
-        ))}
+      <div className={styles.dropdownWrapper}>
+        <label htmlFor="city-select" className={styles.dropdownLabel}>CITY:</label>
+        <select
+          id="city-select"
+          value={selectedCity}
+          onChange={handleCityChange}
+          className={styles.citySelect}
+        >
+          {cities.map((city, index) => (
+            <option key={index} value={city}>
+              {city}
+            </option>
+          ))}
+        </select>
       </div>
-
-      {error && <div className={styles.error}>Error: {error}</div>}
-
-      {loading ? (
-        <p>Loading parks...</p>
-      ) : (
-        parks.filter(park => park.name.includes(searchTerm) && (activeFilter ? park[activeFilter as keyof Park] === 'Y' : true))
-          .map((park) => (
-            <div key={park.parkid} className={styles.park}>
-              <h2 className={styles.parkName} onClick={() => toggleParkDetails(park.parkid)}>{park.name}</h2>
-              {activeParkId === park.parkid && (
-                <div>
-                  <p>Official: {park.official}</p>
-                  <p>Advisories: {park.advisories}</p>
-                  <p>Special Features: {park.specialfeatures}</p>
-                  <p>Facilities: {park.facilities}</p>
-                  <p>Washrooms: {park.washrooms}</p>
-      
-                  <button className={styles.showMoreButton} onClick={() => toggleParkDetails(park.parkid)}>
-                    {activeParkId === park.parkid ? 'Show Less' : 'Show More'}
-                  </button>
-                </div>
-              )}
-            </div>
-          ))
-      )}
+      <CityParkInfo city={selectedCity} parks={filteredParks} />
     </div>
   );
 };
