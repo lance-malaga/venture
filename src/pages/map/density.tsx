@@ -7,6 +7,7 @@ import CustomHead from '@/components/CustomHead';
 import CityFilter from '@/components/Cityfilter/cityfilter';
 import CityDensity from '@/components/CityDensity/citydensity';
 import { useState } from 'react';
+import MapFilter from '@/components/Mapfilter/mapfilter';
 
 
 export default function Density() {
@@ -22,9 +23,14 @@ export default function Density() {
 				<div className={styles.content__container}>
 					<Header/>
 					<main>
-                        <CityFilter  
-                        options={['Vancouver', 'Burnaby', 'Coquitlam', 'Richmond', 'Delta', 'Surrey', 'New Westminster', 'West Vancouver']}
-                        onSelect={handleSelect} />
+						<div className='flex flex-row gap-10'>
+							<CityFilter  
+                        		options={['Vancouver', 'Burnaby', 'Coquitlam', 'Richmond', 'Delta', 'Surrey', 'New Westminster', 'West Vancouver']}
+                        		onSelect={handleSelect} />
+							<MapFilter />
+
+						</div>
+                        
                         <CityDensity selectedOption={selectedOption} />
                        
 						
