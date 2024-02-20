@@ -4,7 +4,6 @@ import styles from '@/styles/Home.module.css'
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import CustomHead from '@/components/CustomHead';
-import Link from 'next/link';
 import CityFilter from '@/components/Cityfilter/cityfilter';
 import CityDensity from '@/components/CityDensity/citydensity';
 import { useState } from 'react';
