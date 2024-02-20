@@ -6,3 +6,14 @@
     max-width: 1280px;
     margin: 0 auto;
 }
+
+@media (max-width: 650px) {
+    .home__container {
+        padding: 40px;
+    }
+}
+@media (max-width: 450px) {
+    .home__container {
+        padding: 25px;
+    }
+}

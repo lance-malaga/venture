@@ -10,6 +10,7 @@
     justify-content: space-between;
     max-width: 1280px;
     margin: 0 auto;
+    gap: 20px;
 }
 .content__container div {
     display: flex;
@@ -18,4 +19,19 @@
     font-weight: bold;
     font-size: 20px;
     letter-spacing: 4px;
+}
+
+@media (max-width: 650px) {
+    .footer__container {
+        padding: 40px;
+    }
+    .content__container {
+        justify-content: center;
+        text-align: center;
+    }
+}
+@media (max-width: 450px) {
+    .footer__container {
+        padding: 25px;
+    }
 }
