@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { parks as localParksData } from '@/data/parks';
-import styles from './Parksapi.module.css';
+import styles from '@/styles/Parks.module.css';
 import Image from 'next/image';
 
 interface Park {
