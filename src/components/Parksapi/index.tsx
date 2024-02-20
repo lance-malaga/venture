@@ -13,39 +13,41 @@ interface CityParkInfoProps {
   parks: Park[];
   parkImageSrc: string;
   parkCount: number;
+  treeImageSrc: string;
+  
 }
 
-const CityParkInfo: React.FC<CityParkInfoProps> = ({ city, parks, parkImageSrc, parkCount }) => {
-  return (
-    <div className={styles.cityInfoContainer}>
-      <div className={styles.parkCounterContainer}>
-        <span className={styles.greenNumber}>{parkCount.toString().padStart(2, '0')}</span>
-        <Image
+const CityParkInfo: React.FC<CityParkInfoProps> = ({ city, parks, parkImageSrc, treeImageSrc, parkCount }) => {
+    return (
+      <div className={styles.cityInfoContainer}>
+        <div className={styles.parkDetailsContainer}>
+          <h3 className={styles.cityParksTitle}>{city} Parks</h3>
+          <span className={styles.greenNumber}>{parkCount.toString().padStart(2, '0')}</span>
+          <Image
           src="/images/parks/tree.png"
           alt="tree"
           width={100}
           height={100}
         />
+          
+          <ul className={styles.parksList}>
+            {parks.map((park, index) => (
+              <li key={index}>{park.park}</li>
+            ))}
+          </ul>
+        </div>
+        <div className={styles.mapContainer}>
+          <Image
+            src={parkImageSrc}
+            alt={`${city} park map`}
+            layout="responsive"
+            width={200}  
+            height={250} 
+          />
+        </div>
       </div>
-      <div className={styles.parkDetailsContainer}>
-        <h3>{city} Parks</h3>
-        <ul className={styles.parksList}>
-          {parks.map((park, index) => (
-            <li key={index}>{park.park}</li>
-          ))}
-        </ul>
-      </div>
-      <div className={styles.cityImageContainer}>
-        <Image
-          src={parkImageSrc}
-          alt={`${city} park`}
-          width={200}
-          height={200}
-          layout="responsive"
-        />
-      </div>
-    </div>
-  );
+      
+    );
 };
 
 const Parksapi = () => {
@@ -117,7 +119,7 @@ const Parksapi = () => {
           ))}
         </select>
       </div>
-      <CityParkInfo city={selectedCity} parks={parksToShow} parkImageSrc={parkImageSrc} parkCount={parksToShow.length} />
+      <CityParkInfo city={selectedCity} parks={parksToShow} parkImageSrc={parkImageSrc} parkCount={parksToShow.length}  treeImageSrc="/tree.png"/>
     </div>
   );
 };

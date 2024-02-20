@@ -18,6 +18,7 @@ export const parks = [
         'Iona Beach Regional Park',
         'Richmond Nature Park',
         'Terra Nova Rural Park',
+        'Middle Arm Waterfront Greenway'
       ],
     },
     {
@@ -28,6 +29,7 @@ export const parks = [
         'Cypress Falls Park',
         'Dundarave Park',
         'Lighthouse Park',
+        'Horshoe Bay Park',
       ],
     },
     {

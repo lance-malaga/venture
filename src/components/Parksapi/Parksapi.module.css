@@ -1,57 +1,46 @@
 .cityInfoContainer {
     display: flex;
-    align-items: flex-start;
+    justify-content: space-between; 
+    align-items: flex-start; 
+    border: 1px solid black;
     justify-content: space-between;
-    background: #ffffff;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 2rem;
-    margin: 2rem 0;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
-    font-size: 2rem; 
-    border: 2px solid #000000;
-  }
-  
-  .parkCounterContainer {
-    display: flex;
-    flex-direction: column; 
-    align-items: center; 
-    margin-right: 2rem; 
-  }
-  
-  .green5 {
-    color: #008E6F;
-    font-size: 4rem; 
-    font-weight: bold;
-    margin-bottom: 1rem; 
   }
   
   .parkDetailsContainer {
-    flex-grow: 1; 
-    max-width: 600px; 
+    box-sizing: border-box; 
+    width: 50%; 
+    background: #ffffff; 
+    padding: 3rem; 
+   
+  }
+  
+  .cityParksTitle {
+    margin: 0; 
+    padding: 0; 
+    font-size: 1rem; 
+    font-weight: bold;
+    text-decoration: underline;
+  
+  }
+  
+  .greenNumber {
+    font-size: 4rem; 
+    font-weight: 700;
+    font-weight: bold;
+    color: #008E6F; 
   }
   
   .parksList {
-    padding: 0;
-    list-style-type: none;
-    text-align: left;
-    font-size: 1rem;
-    font-weight: normal;
+    list-style: none; 
+    padding: 0; 
+    margin: 0; 
+    
   }
   
-  .cityImageContainer {
-    width: 400px; 
-    flex-shrink: 0; 
-    margin-left: 2rem; 
-    border: 1px solid #000000;
-  }
-  
-  .parkDetails {
-    max-width: 70%; 
-  }
-  .greenNumber {
-    font-weight: bold;
-    text-decoration: underline;
-    color: #008E6F;;
+  .mapContainer {
+    width: 50%; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
   }
   
