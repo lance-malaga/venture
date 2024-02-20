@@ -17,9 +17,11 @@ const CityFilter: React.FC<DropdownProps> = ({ options, onSelect }) => {
   return (
     <div className='flex flex-row gap-5'>
       <p>CITY:</p>
-      <select value={selectedOption} onChange={handleSelectChange}>
-      <option value="">Select a city</option>
-      {options.map((option, index) => (
+      <select value={selectedOption}
+              onChange={handleSelectChange}
+              style={{ background: 'transparent', border: 'none', borderBottom: '1px solid black', outline:'none' }}>
+       {selectedOption === "" && <option value="">Select a city</option>}
+        {options.map((option, index) => (
         <option key={index} value={option}>
           {option}
         </option>
