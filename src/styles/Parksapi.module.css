@@ -1,0 +1,46 @@
+.cityInfoContainer {
+    display: flex;
+    justify-content: space-between; 
+    align-items: flex-start; 
+    border: 1px solid black;
+    justify-content: space-between;
+  }
+  
+  .parkDetailsContainer {
+    box-sizing: border-box; 
+    width: 50%; 
+    background: #ffffff; 
+    padding: 3rem; 
+   
+  }
+  
+  .cityParksTitle {
+    margin: 0; 
+    padding: 0; 
+    font-size: 1rem; 
+    font-weight: bold;
+    text-decoration: underline;
+  
+  }
+  
+  .greenNumber {
+    font-size: 4rem; 
+    font-weight: 700;
+    font-weight: bold;
+    color: #008E6F; 
+  }
+  
+  .parksList {
+    list-style: none; 
+    padding: 0; 
+    margin: 0; 
+    
+  }
+  
+  .mapContainer {
+    width: 50%; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+  }
+  
