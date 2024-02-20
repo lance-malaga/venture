@@ -56,22 +56,24 @@ const Parksapi = () => {
   useEffect(() => {
  
     if (selectedCity === 'Vancouver') {
-      const fetchParksData = async () => {
-        try {
-          const response = await fetch('https://opendata.vancouver.ca/api/explore/v2.1/catalog/datasets/parks/records?limit=20');
-          if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-          }
-          const apiData = await response.json();
-          const parksData: Park[] = apiData.results.map((record: any) => ({
-            park: record.name,
-            city: 'Vancouver',
-          }));
-          setParks([...localParksData, ...parksData]);
-        } catch (err) {
-          console.error('Error fetching parks data:', err);
-        }
-      };
+        const fetchParksData = async () => {
+            try {
+              const response = await fetch('https://opendata.vancouver.ca/api/explore/v2.1/catalog/datasets/parks/records?limit=20');
+              if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+              }
+              const apiData = await response.json();
+        
+              const parksData: Park[] = apiData.results.slice(0, 5).map((record: any) => ({
+                park: record.name,
+                city: 'Vancouver',
+              }));
+           
+              setParks([...localParksData, ...parksData]);
+            } catch (err) {
+              console.error('Error fetching parks data:', err);
+            }
+          };
       fetchParksData();
     } else {
      
