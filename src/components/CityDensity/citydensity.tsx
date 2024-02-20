@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import densityMap from '../../../public/images/density-map-frame.png'
-//const cityData = require('../../../data/citydata.json');
 
 interface CityDensityProps {
   selectedOption: string;
@@ -20,12 +18,6 @@ const CityDensity: React.FC<CityDensityProps> = ({ selectedOption }) => {
       .catch(error => console.error('Error fetching JSON:', error));
   }, [selectedOption]);
 
-  /*
-  useEffect(() => {    
-    const matchedData = cityData.find((item: any) => item["Region Name"] === selectedOption);
-    setCityData(matchedData || {});
-  }, [selectedOption]);
-  */
 
   // Get cityImage path
   const getImagePath = (cityName: string) => {
