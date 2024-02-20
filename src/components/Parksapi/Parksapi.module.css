@@ -9,6 +9,7 @@
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
     font-size: 2rem; 
+    border: 2px solid #000000;
   }
   
   .parkCounterContainer {
@@ -42,6 +43,7 @@
     width: 400px; 
     flex-shrink: 0; 
     margin-left: 2rem; 
+    border: 1px solid #000000;
   }
   
   .parkDetails {
