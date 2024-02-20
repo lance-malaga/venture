@@ -18,7 +18,8 @@ export const parks = [
         'Iona Beach Regional Park',
         'Richmond Nature Park',
         'Terra Nova Rural Park',
-        'Middle Arm Waterfront Greenway'
+        'Middle Arm Waterfront Greenway',
+        'Aberdeen Neighbourhood Park',
       ],
     },
     {
@@ -72,7 +73,8 @@ export const parks = [
         'Tynehead Park',
         'Blackie Spit Park',
         'Unwin Park',
-        'Northview Park'
+        'Northview Park',
+        'Surrey Bend Park'
       ],
     },
   ];
