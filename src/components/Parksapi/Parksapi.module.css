@@ -47,4 +47,9 @@
   .parkDetails {
     max-width: 70%; 
   }
+  .greenNumber {
+    font-weight: bold;
+    text-decoration: underline;
+    color: #008E6F;;
+  }
   
