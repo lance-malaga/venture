@@ -5,7 +5,7 @@ import Logo from '../../../public/icons/logo-white.svg'
 
 export default function Footer(){
     return (
-        <div className={styles.footer__container}> 
+        <footer className={styles.footer__container}> 
             <div className={styles.content__container}>
                 <p>© 2024 Venture. All  rights reserved.</p>
                 <div>
@@ -14,6 +14,6 @@ export default function Footer(){
                 </div>
                 <p>venture@mail.com</p>
             </div>
-        </div>
+        </footer>
     )
 }
