@@ -4,7 +4,7 @@
   justify-content: space-between;
   align-items: flex-start;
   gap: 20px;
-  padding: 0;
+  padding: 20;
   margin-top: 60px;
 }
 
@@ -17,6 +17,7 @@
   border: 2px solid var(--color-black);
   margin: 0;
   margin-right: 20px;
+  padding: 20px;
   
 }
 
