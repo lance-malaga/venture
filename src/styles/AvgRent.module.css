@@ -6,3 +6,24 @@
     max-width: 1280px;
     margin: 0 auto;
 }
+
+.content_body{
+    display: flex;
+    flex-direction: row;
+    gap: 30px
+}
+.content_api h2{
+    font-size: 64px;
+    color: '#364EC0';
+}
+
+@media (max-width: 650px) {
+    .home__container {
+        padding: 40px;
+    }
+}
+@media (max-width: 450px) {
+    .home__container {
+        padding: 25px;
+    }
+}
