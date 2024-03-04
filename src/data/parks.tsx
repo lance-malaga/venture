@@ -34,7 +34,7 @@ export const parks = [
       ],
     },
     {
-      city: 'New West',
+      city: 'NewWest',
       parks: [
         'Queens Park',
         'Moody Park',
