@@ -1,104 +1,109 @@
 
-
 .cityInfoContainer {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  padding: 0;
-  gap: 20px; 
+  gap: 20px;
+  padding: 20;
   margin-top: 60px;
 }
+
+
 .parkDetailsContainer {
   box-sizing: border-box;
-  width: calc(50% - 10px); 
+  width: calc(50% - 10px);
   background: #ffffff;
-  padding: 30px; 
-  border: 2px solid var(--color-black); 
-  margin: 0; 
+  padding: 30px;
+  border: 2px solid var(--color-black);
+  margin: 0;
   margin-right: 20px;
+  padding: 20px;
+  
 }
 
 
 .cityParksTitle {
   margin: 0 0 10px 0;
-  font-size: 24px; 
-  font-weight: bold;
   color: #000;
   text-transform: uppercase;
-  text-transform: uppercase;
-  font-size: 2rem; 
-  margin-bottom: 0.5rem; 
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
 }
+
 
 .greenNumber {
   font-size: 6rem;
+  color: #008E6F;
   font-weight: bold;
-  color: #008E6F ;
-  margin-bottom: 20px; 
+  margin-bottom: 20px;
 }
 
+
 .cityDescription {
-  font-size: 16px; 
-  color: #000; 
+  font-size: 16px;
+  color: #000;
   line-height: 1.6;
 }
 
 
-
-
-
-.imageStyle {
-  width: 400px;
-  height: auto; 
-}
-
-
-
-
 .titleUnderline {
   width: 50px;
-  height: 4px; 
-  background-color: #000; 
-  
+  height: 4px;
+  background-color: #000;
 }
 
+
 .dropdownLabel {
-  font-weight: bold; 
-  margin-right: 1rem; 
+  font-weight: bold;
+  margin-right: 1rem;
 }
 
 
 .dropdownWrapper {
-  position: relative; 
-  display: inline-block; 
+  position: relative;
+  display: inline-block;
 }
 
+
 .citySelect {
-  border: none; 
-  background-color: transparent; 
-  padding: 5px 30px 5px 10px; 
-  font-size: 1rem; 
-  border-bottom: 2px solid #000; 
+  width: auto;
+  border: none;
+  background-color: transparent;
+  padding: 5px 30px 5px 10px;
+  font-size: 1rem;
+  border-bottom: 2px solid #000;
 }
 
 
 .dropdownWrapper::after {
-
-  font-size: 1rem; 
-  position: absolute; 
-  right: 0; 
-  top: 0; 
-  padding: 5px 10px; 
-
+  font-size: 1rem;
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 5px 10px;
 }
 
 
 .citySelect:focus {
-  outline: none; 
-  border-bottom: 2px solid #555; 
+  outline: none;
+  border-bottom: 2px solid #555;
 }
 
 
-.citySelect {
-  width: auto; 
+.imageStyle {
+  width: 100%; 
+  height: auto;
+}
+
+
+.mapContainer {
+  width: 800px; 
+  padding: 20px;
+}
+
+
+.mapContainer img {
+  width: 100%;
+  height: auto;
 }
