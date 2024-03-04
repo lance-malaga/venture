@@ -18,6 +18,13 @@ describe('Home Page', () => {
         console.log('Starting Home Page Test');
     })
 
+// exist - checks whether at least one element matches the selector exists.
+    it('should display the ChooseCity component', () => {
+      
+        cy.contains('h5', 'CHOOSE A CITY').should('exist');
+      
+        cy.get('.choose-city-container').should('exist'); 
+    });
 	it('should display a header, footer, image, h1, and 2 nav links on the home page', () => {
 		cy.visit('http://localhost:3000');
         // test for header
@@ -33,3 +40,19 @@ describe('Home Page', () => {
         cy.get('a:contains("Statistics")').should('be.visible');
 	})
 })
+//	cy.viewport
+it('should have correct padding on medium screens', () => {
+    cy.viewport(650, 800); 
+    cy.get('.home__container').should('have.css', 'padding', '40px'); 
+});
+
+it('should have correct padding on small screens', () => {
+    cy.viewport(450, 800); 
+    cy.get('.home__container').should('have.css', 'padding', '25px');
+});
+
+// what link should i use for this one ?
+it('should navigate to the about page when the link is clicked', () => {
+    cy.get("[href*='about']").click();
+    
+});
