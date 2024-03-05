@@ -4,9 +4,10 @@ import Header from "@/components/Header";
 import CustomHead from '@/components/CustomHead';
 import PageTitle from '@/components/PageTitle';
 import styles from '@/styles/AvgRent.module.css';
+import CityFilter from '@/components/Cityfilter/cityfilter';
 
 export default function AvgRent() {
-    const [selectedCity, setSelectedCity] = useState("");
+    const [selectedCity, setSelectedCity] = useState("Vancouver");
     const [costData, setCostData] = useState(null);
     const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
@@ -53,7 +54,6 @@ export default function AvgRent() {
                     'X-RapidAPI-Host': 'cities-cost-of-living-and-average-prices-api.p.rapidapi.com'
                 }
             };
-
             fetch(url, options)
                 .then(response => response.json())
                 .then(response => {
@@ -66,8 +66,8 @@ export default function AvgRent() {
         }
     }, [selectedCity]);
 
-    const handleChange = (event: any) => {
-        setSelectedCity(event.target.value);
+    const handleChange = (event: string) => {
+        setSelectedCity(event);
     };
 
     return (
@@ -76,30 +76,54 @@ export default function AvgRent() {
             <div className={styles.home__container}>
                 <div className={styles.content__container}>
                     <Header />
+
                     <main>
-                        <PageTitle title={selectedCity }desc={`Welcome to Venture! Explore ${selectedCity}'s diverse neighborhoods to find the perfect match for your lifestyle.`}/>
-                        <div>
-                            <label htmlFor="cities">Select a city:</label>
-                            <select id="cities" name="cities" value={selectedCity} onChange={handleChange}>
-                                <option value="">Select</option>
-                                {areas.map((city, index) => (
-                                    <option key={index} value={city}>
-                                        {city}
-                                    </option>
-                                ))}
-                            </select>
-                            {selectedCity && costData && (
+                        <PageTitle title={selectedCity }/>
+                        <div className={styles.content_body}>
+
+                        <div className={styles.content_filter}>
+                            <div>
+                                <CityFilter options={areas} onSelect={handleChange} />
+                            </div>
+                            
+                            <div style={{ width: '390px', height: '640px', border: '2px solid black', padding: '20px' , marginTop:'10px'}}>
+                            <div style={{fontWeight: 'bold', fontSize: '20px'}}>{selectedCity}</div>
+                            <div style={{ width: '60px', height: '5px', backgroundColor: 'black', marginTop: '5px'}}></div>
+                                <div className="text-l uppercase"
+                                        style={{marginTop: '25%'}}>
+                                    AVERAGE RENT
+                                    </div>
+
+                                    {costData && (
+                                <div className={styles.content_api}>
+                                    <h2>{costData["City Name"]}</h2>
+                                    {/* <div>
+                                        <h2>Cost of Living in {costData["Cost of Living Month Total"]}</h2>
+                                    </div> */}
+                                </div>
+                            )}
+
+                                    <div
+                                        style={{
+                                        fontWeight: 700,
+                                        fontSize: '64px',
+                                        lineHeight: '78px',
+                                        letterSpacing: '0.1em',
+                                        color: '#C73E1D'                         
+                                        }}>
+                                    </div>
+                                    <div className='mt-5'></div>
+                            </div>
+                        </div>
+                        {selectedCity &&  (
                                 <div>
+                                    <div style={{marginBottom: '10px'}}>FILTER BY:     AVG. RENT / DENSITY / PARKS</div>
                                     {citiesRent
                                         .filter(cityData => cityData.city === selectedCity)
                                         .map(cityData => (
-                                            <img key={cityData.city} src={cityData.image} alt={`Image of ${selectedCity}`} />
+                                            <img style={{height: '640px'}}key={cityData.city} src={cityData.image} alt={`Image of ${selectedCity}`} />
                                         ))
                                     }
-                                    <h2>Cost of Living in {costData["City Name"]}, {costData["Country Name"]}</h2>
-                                    <div>
-                                        <h2>Cost of Living in {costData["Cost of Living Month Total"]}</h2>
-                                    </div>
                                 </div>
                             )}
                         </div>
