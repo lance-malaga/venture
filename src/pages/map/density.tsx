@@ -4,10 +4,11 @@ import styles from '@/styles/Home.module.css'
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import CustomHead from '@/components/CustomHead';
-import Link from 'next/link';
 import CityFilter from '@/components/Cityfilter/cityfilter';
 import CityDensity from '@/components/CityDensity/citydensity';
 import { useState } from 'react';
+import MapFilter from '@/components/Mapfilter/mapfilter';
+//map filter here
 
 
 export default function Density() {
@@ -18,14 +19,19 @@ export default function Density() {
     };
 	return (
 		<>
-			<CustomHead name={'Test Page'}/>
+			<CustomHead name={'Map Density'}/>
 			<div className={styles.home__container}>
 				<div className={styles.content__container}>
 					<Header/>
 					<main>
-                        <CityFilter  
-                        options={['Vancouver', 'Burnaby', 'Coquitlam', 'Richmond', 'Delta', 'Surrey', 'New Westminster', 'West Vancouver']}
-                        onSelect={handleSelect} />
+						<div className='flex flex-row gap-10'>
+							<CityFilter  
+                        		options={['Vancouver', 'Burnaby', 'Coquitlam', 'Richmond', 'Delta', 'Surrey', 'New Westminster', 'West Vancouver']}
+                        		onSelect={handleSelect} />
+							<MapFilter />
+
+						</div>
+                        
                         <CityDensity selectedOption={selectedOption} />
                        
 						
