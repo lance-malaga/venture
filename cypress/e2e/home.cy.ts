@@ -15,19 +15,9 @@
 
 describe('Home Page', () => {
     beforeEach(function() {
-        
         cy.visit('http://localhost:3000');
         console.log('Starting Home Page Test');
     });
-//5.	exist - checks whether at least one element matches the selector exists. *NOT DONE
-    it('should display the ChooseCity component with city options', () => {
-        cy.contains('CHOOSE A CITY').should('exist');
-    });
-    //  7.	have.length - checks the number of elements of the selected element.
-    it('should display two navigation links', () => {
-        cy.get('nav a').should('have.length', 2);
-    });
-    
 
     // Test to check the visibility of various elements on the home page 1, 2, 3, 4
     it('should display a header, footer, image, h1, and 2 nav links on the home page', () => {
@@ -36,6 +26,15 @@ describe('Home Page', () => {
         cy.get('img').should('be.visible').and('have.attr', 'src').should('not.be.empty');
         cy.get('a:contains("Home")').should('be.visible');
         cy.get('a:contains("Statistics")').should('be.visible');
+    });
+
+    // 5
+    it('should display the ChooseCity component with city options', () => {
+        cy.contains('CHOOSE A CITY').should('exist');
+    });
+    // 7
+    it('should display two navigation links', () => {
+        cy.get('header a').should('have.length', 3);
     });
 
     //  6.	cy.viewport - checks the screen size of your website.  *DONE
