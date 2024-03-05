@@ -8,6 +8,7 @@ import CityFilter from '@/components/Cityfilter/cityfilter';
 import CityDensity from '@/components/CityDensity/citydensity';
 import { useState } from 'react';
 import MapFilter from '@/components/Mapfilter/mapfilter';
+//map filter here
 
 
 export default function Density() {
