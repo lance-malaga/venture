@@ -5,6 +5,7 @@ import CustomHead from '@/components/CustomHead';
 import PageTitle from '@/components/PageTitle';
 import styles from '@/styles/AvgRent.module.css';
 import CityFilter from '@/components/Cityfilter/cityfilter';
+import Link from 'next/link';
 
 export default function AvgRent() {
     const [selectedCity, setSelectedCity] = useState("Vancouver");
@@ -117,7 +118,7 @@ export default function AvgRent() {
                         </div>
                         {selectedCity &&  (
                                 <div>
-                                    <div style={{marginBottom: '10px'}}>FILTER BY:     AVG. RENT / DENSITY / PARKS</div>
+                                    <div style={{marginBottom: '10px'}}>FILTER BY: <Link href={`/map/avg-rent`}>AVG. RENT </Link>/ <Link href={`/map/density`}>DENSITY</Link> / <Link href={`/map/parks`}>PARKS</Link></div>
                                     {citiesRent
                                         .filter(cityData => cityData.city === selectedCity)
                                         .map(cityData => (
