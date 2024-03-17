@@ -31,6 +31,9 @@
     padding: 30px;
     border: 2px solid var(--color-black);
 }
+.stat__info div p {
+    text-align: justify;
+}
 
 .legend__container {
     margin-top: 40px;

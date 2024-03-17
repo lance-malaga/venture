@@ -23,7 +23,9 @@ export default function Statistics() {
                                 <div>
                                     <h5>AVG. RENT COMPARISON</h5>
                                     <hr/>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate alias numquam cum dolor ipsa.</p>
+                                    <p>
+                                        Average rent prices can vary depending on factors such as location, housing type, and market conditions. However, here are approximate average rent prices for 1-bedroom apartments in the Metro Vancouver area as of 2022:
+                                    </p>
                                 </div>
                                 <div className={styles.legend__container}>
                                     {statData.map((item, index) => (
