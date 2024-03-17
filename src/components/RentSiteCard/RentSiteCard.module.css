@@ -1,0 +1,41 @@
+.card {
+    width: 360px;
+}
+.card img {
+    cursor: pointer;
+}
+.card hr {
+    border-top: 5px solid var(--color-black);
+    height: 0;
+    margin-top: 25px;
+}
+.card div {
+    height: 135px;
+    margin: 35px 0 40px;
+}
+.card h5 {
+    font-weight: var(--font-bold);
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+.card p {
+    text-align: justify;
+}
+.card button {
+    color: var(--color-white);
+    padding: 18px 60px;
+    text-align: center;
+    background-color: var(--color-black);
+    transition: .3s all ease-in-out;
+}
+.card button:hover {
+    opacity: 0.7;
+}
+@media (max-width: 600px) {
+    .card {
+        width: 100%;
+    }
+    .card img {
+        width: 100%;
+    }
+}

@@ -5,7 +5,9 @@ import CustomHead from '@/components/CustomHead';
 import PageTitle from '@/components/PageTitle';
 import styles from '@/styles/AvgRent.module.css';
 import CityFilter from '@/components/Cityfilter/cityfilter';
+import RentSiteCard from '@/components/RentSiteCard';
 import Link from 'next/link';
+import { rentSiteData } from '@/data/rentSite';
 
 export default function AvgRent() {
     const [selectedCity, setSelectedCity] = useState("Vancouver");
@@ -81,42 +83,41 @@ export default function AvgRent() {
                     <main>
                         <PageTitle title={selectedCity }/>
                         <div className={styles.content_body}>
-
-                        <div className={styles.content_filter}>
-                            <div>
-                                <CityFilter options={areas} onSelect={handleChange} />
-                            </div>
-                            
-                            <div style={{ width: '390px', height: '640px', border: '2px solid black', padding: '20px' , marginTop:'10px'}}>
-                            <div style={{fontWeight: 'bold', fontSize: '20px'}}>{selectedCity}</div>
-                            <div style={{ width: '60px', height: '5px', backgroundColor: 'black', marginTop: '5px'}}></div>
-                                <div className="text-l uppercase"
-                                        style={{marginTop: '25%'}}>
-                                    AVERAGE RENT
-                                    </div>
-
-                                    {costData && (
-                                <div className={styles.content_api}>
-                                    <h2>{costData["City Name"]}</h2>
-                                    {/* <div>
-                                        <h2>Cost of Living in {costData["Cost of Living Month Total"]}</h2>
-                                    </div> */}
+                            <div className={styles.content_filter}>
+                                <div>
+                                    <CityFilter options={areas} onSelect={handleChange} />
                                 </div>
-                            )}
+                                
+                                <div style={{ width: '390px', height: '640px', border: '2px solid black', padding: '20px' , marginTop:'10px'}}>
+                                <div style={{fontWeight: 'bold', fontSize: '20px'}}>{selectedCity}</div>
+                                <div style={{ width: '60px', height: '5px', backgroundColor: 'black', marginTop: '5px'}}></div>
+                                    <div className="text-l uppercase"
+                                            style={{marginTop: '25%'}}>
+                                        AVERAGE RENT
+                                        </div>
 
-                                    <div
-                                        style={{
-                                        fontWeight: 700,
-                                        fontSize: '64px',
-                                        lineHeight: '78px',
-                                        letterSpacing: '0.1em',
-                                        color: '#C73E1D'                         
-                                        }}>
+                                        {costData && (
+                                    <div className={styles.content_api}>
+                                        <h2>{costData["City Name"]}</h2>
+                                        {/* <div>
+                                            <h2>Cost of Living in {costData["Cost of Living Month Total"]}</h2>
+                                        </div> */}
                                     </div>
-                                    <div className='mt-5'></div>
+                                )}
+
+                                        <div
+                                            style={{
+                                            fontWeight: 700,
+                                            fontSize: '64px',
+                                            lineHeight: '78px',
+                                            letterSpacing: '0.1em',
+                                            color: '#C73E1D'                         
+                                            }}>
+                                        </div>
+                                        <div className='mt-5'></div>
+                                </div>
                             </div>
-                        </div>
-                        {selectedCity &&  (
+                            {selectedCity &&  (
                                 <div>
                                     <div style={{marginBottom: '10px'}}>FILTER BY: <Link href={`/map/avg-rent`}>AVG. RENT </Link>/ <Link href={`/map/density`}>DENSITY</Link> / <Link href={`/map/parks`}>PARKS</Link></div>
                                     {citiesRent
@@ -127,6 +128,22 @@ export default function AvgRent() {
                                     }
                                 </div>
                             )}
+                        </div>
+
+                        <div className={styles.rental_site}>
+                            <h4>FIND YOUR NEW HOME</h4>
+                            <p>Take a look at one of the most trusted apartment rental<br/> websites available in Vancouver. Here’s the list!</p>
+                            <div className={styles.rental_site__container}>
+                                {rentSiteData.map((item,index) => (
+                                    <RentSiteCard
+                                        image={item.image}
+                                        site={item.site}
+                                        desc={item.desc}
+                                        link={item.link}
+                                        key={index}
+                                    />
+                                ))}
+                            </div>
                         </div>
                     </main>
                 </div>
