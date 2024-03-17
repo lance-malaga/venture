@@ -3,3 +3,10 @@ interface IStatDataProps {
     rent: number;
     color: string;
 }
+
+interface IRentSiteProps {
+    image: string;
+    site: string;
+    desc: string;
+    link: string;
+}
