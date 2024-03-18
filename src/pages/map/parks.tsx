@@ -3,8 +3,10 @@ import { parks as localParksData } from '@/data/parks';
 import styles from '@/styles/Parks.module.css';
 import Image from 'next/image';
 import Footer from "@/components/Footer";
+import CustomHead from "@/components/CustomHead";
 import Header from "@/components/Header";
 import MapFilter from '@/components/Mapfilter/mapfilter';
+import PageTitle from '@/components/PageTitle';
 
 interface Park {
   park: string;
@@ -78,8 +80,11 @@ const Parksapi = () => {
   return (
     <div>
        <Header />
+       <CustomHead/>
+       <PageTitle />
       <div className={styles.dropdownWrapper}>
         <label htmlFor="city-select" className={styles.dropdownLabel}>CITY:</label>
+        
         <select
           id="city-select"
           value={selectedCity}
@@ -90,6 +95,7 @@ const Parksapi = () => {
             <option key={index} value={city}>
               {city}
             </option>
+
           ))}
         </select>
       </div>
