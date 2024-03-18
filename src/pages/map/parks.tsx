@@ -4,6 +4,7 @@ import styles from '@/styles/Parks.module.css';
 import Image from 'next/image';
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import MapFilter from '@/components/Mapfilter/mapfilter';
 
 interface Park {
   park: string;
@@ -71,8 +72,7 @@ const Parksapi = () => {
   })) : [];
 
   const parksToShow = selectedCity === 'Vancouver' ? vancouverParks : localParks;
-
-
+  const [parks, setParks] = useState<Park[]>([{ park: 'Stanley Park', city: 'Vancouver' }]); 
   const cityDescription = cityDescriptions[selectedCity] || 'Description for this city is not available.';
 
   return (
@@ -111,6 +111,7 @@ const Parksapi = () => {
           </ul>
         </div>
         <div className={styles.mapContainer}>
+        <MapFilter />
           <Image
             src={parkImageSrc}
             alt={`${selectedCity} park map`}

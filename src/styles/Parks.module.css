@@ -4,7 +4,8 @@
   justify-content: space-between;
   align-items: flex-start;
   gap: 20px;
-  padding: 20;
+  padding: 0 80px;
+  padding-top: 60px; 
   margin-top: 60px;
 }
 
@@ -16,9 +17,7 @@
   padding: 30px;
   border: 2px solid var(--color-black);
   margin: 0;
-  margin-right: 20px;
-  padding: 20px;
-  
+  margin-right: 20px; 
 }
 
 
@@ -106,4 +105,60 @@
 .mapContainer img {
   width: 100%;
   height: auto;
+}
+
+.content__container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.parkDetailsContainer h3 {
+  font-weight: bold;
+  font-size: 20px;
+  letter-spacing: 2px;
+  margin-bottom: 5px;
+}
+
+.parkDetailsContainer hr {
+  height: 0;
+  border-top: 5px solid var(--color-black);
+  width: 60px;
+  margin-bottom: 20px;
+}
+
+.parkDetailsContainer .stat__content {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+
+
+.parkDetailsContainer .stat__info {
+  max-width: 390px;
+  padding: 30px;
+  border: 2px solid var(--color-black);
+}
+
+.parkDetailsContainer .stat__info div p {
+  text-align: justify;
+}
+
+
+@media (max-width: 650px) {
+  .cityInfoContainer {
+    flex-direction: column;
+    padding: 40px;
+  }
+  
+  .parkDetailsContainer, .mapContainer {
+    width: 100%; 
+    margin-right: 0; 
+  }
+}
+
+@media (max-width: 450px) {
+  .cityInfoContainer {
+    padding: 25px;
+  }
 }
