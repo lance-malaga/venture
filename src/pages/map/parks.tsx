@@ -99,7 +99,7 @@ const Parksapi = () => {
           ))}
         </select>
       </div>
-      <div className={styles.cityInfoContainer}>
+      <div className={styles.cityInfoContainer} data-testid="city-info-container">
         <div className={styles.parkDetailsContainer}>
           <h3 className={styles.cityParksTitle}>{selectedCity} Parks</h3>
           <span className={styles.greenNumber}>{parksToShow.length.toString().padStart(2, '0')}</span>

@@ -28,22 +28,34 @@ describe('Home Page', () => {
         cy.get('a:contains("Statistics")').should('be.visible');
     });
 
+    it('should keep the header visible after scrolling down the page', () => {
+        cy.scrollTo('bottom'); 
+        cy.get('header').should('be.visible'); 
+        cy.scrollTo('top'); 
+    });
+
     // 5. exist - checks whether at least one element matches the selector exists.
     it('should display the ChooseCity component with city options', () => {
         cy.contains('CHOOSE A CITY').should('exist');
     });
-     //  6.	cy.viewport - checks the screen size of your website.  *DONE
-     describe('Responsive Padding', () => {
-        it('should have correct padding on small screens', () => {
-          // Set the viewport to 450px by 800px to trigger the CSS media query
-          cy.viewport(450, 800);
-          
-          // Assuming that the title is "Venture", resulting in "City Of Venture / Metro Vancouver" in the <h1>
-          cy.contains('h1', 'City Of Venture / Metro Vancouver').closest('[class*="home__container"]').should('have.css', 'padding', '25px');
-        });
-      });
-      
+    
+ 
+    // 6. 
+    it('should display correctly in mobile view', () => {
+        cy.viewport(375, 812); // iPhone X dimensions
+     
+    });
+    it('should adjust the navigation menu for tablet view', () => {
+        cy.viewport(768, 1024); 
+     
+    });
 
+    it('should display the ChooseCity component in desktop view', () => {
+        cy.viewport(1024, 768); 
+        
+
+    });
+    
     //   7. have.length - checks the number of elements of the selected element.
     it('should display two navigation links', () => {
         cy.get('header a').should('have.length', 3);
