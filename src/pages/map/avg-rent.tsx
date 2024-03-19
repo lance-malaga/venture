@@ -11,33 +11,41 @@ import { rentSiteData } from '@/data/rentSite';
 
 export default function AvgRent() {
     const [selectedCity, setSelectedCity] = useState("Vancouver");
+    const [currentPage, setCurrentPage] = useState("avg-rent");
     const [costData, setCostData] = useState(null);
     const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
     const citiesRent = [
         {
             city: 'Vancouver',
-            image: '/images/citiesRent/avg-rent-vancouver.png',
+            image: '/images/citiesRent/avg-rent-vancouver.svg',
+            info: 'Rental data is collected from various sources such as real estate agencies, property management companies, online rental platforms, surveys, and government databases. Provided here is the average rent for Vancouver'
         },
         {
             city: 'Burnaby',
-            image: '/images/citiesRent/avg-rent-burnaby.png',
+            image: '/images/citiesRent/avg-rent-burnaby.svg',
+            info: 'Rental data is collected from various sources such as real estate agencies, property management companies, online rental platforms, surveys, and government databases. Provided here is the average rent for Burnaby'
         },
         {
             city: 'New-Westminster',
-            image: '/images/citiesRent/avg-rent-new-west.png',
+            image: '/images/citiesRent/avg-rent-new-west.svg',
+            info: 'Rental data is collected from various sources such as real estate agencies, property management companies, online rental platforms, surveys, and government databases. Provided here is the average rent for New-Westminster'
         },
         {
             city: 'Surrey',
-            image: '/images/citiesRent/avg-rent-surrey.png',
+            image: '/images/citiesRent/avg-rent-surrey.svg',
+            info: 'Rental data is collected from various sources such as real estate agencies, property management companies, online rental platforms, surveys, and government databases. Provided here is the average rent for Surrey'
+            
         },
         {
             city: 'Coquitlam',
-            image: '/images/citiesRent/avg-rent-coquitlam.png',
+            image: '/images/citiesRent/avg-rent-coquitlam.svg',
+            info: 'Rental data is collected from various sources such as real estate agencies, property management companies, online rental platforms, surveys, and government databases. Provided here is the average rent for Coquitlam'
         },
         {
             city: 'Richmond',
-            image: '/images/citiesRent/avg-rent-richmond.png',
+            image: '/images/citiesRent/avg-rent-richmond.svg',
+            info: 'Rental data is collected from various sources such as real estate agencies, property management companies, online rental platforms, surveys, and government databases. Provided here is the average rent for Richmond'
         },
     ];
 
@@ -85,11 +93,11 @@ export default function AvgRent() {
                         <div className={styles.content_body}>
                             <div className={styles.content_filter}>
                                 <div>
-                                    <CityFilter options={areas} onSelect={handleChange} />
+                                    <CityFilter options={areas} onSelect={handleChange}/>
                                 </div>
                                 
                                 <div style={{ width: '390px', height: '640px', border: '2px solid black', padding: '20px' , marginTop:'10px'}}>
-                                <div style={{fontWeight: 'bold', fontSize: '20px'}}>{selectedCity}</div>
+                                <div style={{fontWeight: 'bold', fontSize: '20px',textTransform: 'uppercase'}}>{selectedCity}</div>
                                 <div style={{ width: '60px', height: '5px', backgroundColor: 'black', marginTop: '5px'}}></div>
                                     <div className="text-l uppercase"
                                             style={{marginTop: '25%'}}>
@@ -102,6 +110,12 @@ export default function AvgRent() {
                                         {/* <div>
                                             <h2>Cost of Living in {costData["Cost of Living Month Total"]}</h2>
                                         </div> */}
+                                        {citiesRent
+                                        .filter(cityData => cityData.city === selectedCity)
+                                        .map(cityData => (
+                                            <div>{cityData.info}</div>
+                                        ))
+                                    }
                                     </div>
                                 )}
 
@@ -119,7 +133,7 @@ export default function AvgRent() {
                             </div>
                             {selectedCity &&  (
                                 <div>
-                                    <div style={{marginBottom: '10px'}}>FILTER BY: <Link href={`/map/avg-rent`}>AVG. RENT </Link>/ <Link href={`/map/density`}>DENSITY</Link> / <Link href={`/map/parks`}>PARKS</Link></div>
+                                    <div style={{marginBottom: '10px'}}>FILTER BY: <Link href={`/map/avg-rent`} style={{ color: currentPage === "avg-rent" ? "#364EC0" : "inherit", fontWeight: currentPage === "avg-rent" ? "bold" : "normal" }}>AVG. RENT </Link>/ <Link href={`/map/density`}>DENSITY</Link> / <Link href={`/map/parks`}>PARKS</Link></div>
                                     {citiesRent
                                         .filter(cityData => cityData.city === selectedCity)
                                         .map(cityData => (
