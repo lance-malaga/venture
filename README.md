@@ -13,4 +13,5 @@
 + Aneet Romana
 
 ## APIs
-https://opendata.vancouver.ca/api/explore/v2.1/catalog/datasets/parks/records?limit=5
+- [Avergae Rent Data](https://rapidapi.com/zyla-labs-zyla-labs-default/api/cities-cost-of-living-and-average-prices-api/)
+- [Parks Data](https://opendata.vancouver.ca/api/explore/v2.1/catalog/datasets/parks/records?limit=5)
