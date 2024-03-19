@@ -1,8 +1,15 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 
 const MapFilter = () => {
-    const [currentPage, setCurrentPage] = useState("avg-rent");
+    const router = useRouter();
+    const [currentPage, setCurrentPage] = useState('density');
+
+    useEffect(() => {
+        const currentPagePath = router.pathname.split('/').pop() || 'density'; 
+        setCurrentPage(currentPagePath);
+    }, [router.pathname]); 
 
     const handleLinkClick = (page: string) => {
         setCurrentPage(page);

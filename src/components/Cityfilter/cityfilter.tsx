@@ -23,7 +23,7 @@ const CityFilter: React.FC<DropdownProps> = ({ options, onSelect }) => {
        {selectedOption === "" && <option value="">Select a city</option>}
         {options.map((option, index) => (
         <option key={index} value={option}>
-          {option}
+          {option.toUpperCase()}
         </option>
       ))}
     </select>
