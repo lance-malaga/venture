@@ -6,6 +6,7 @@ import PageTitle from '@/components/PageTitle';
 import styles from '@/styles/AvgRent.module.css';
 import CityFilter from '@/components/Cityfilter/cityfilter';
 import RentSiteCard from '@/components/RentSiteCard';
+import TitleSection from '@/components/TitleSection';
 import Link from 'next/link';
 import { rentSiteData } from '@/data/rentSite';
 
@@ -145,8 +146,15 @@ export default function AvgRent() {
                         </div>
 
                         <div className={styles.rental_site}>
-                            <h4>FIND YOUR NEW HOME</h4>
-                            <p>Take a look at one of the most trusted apartment rental<br/> websites available in Vancouver. Here’s the list!</p>
+                            <TitleSection
+                                title='FIND YOUR NEW HOME'
+                                desc={(
+                                    <>
+                                        Take a look at one of the most trusted apartment rental <br />
+                                        websites available in Vancouver. Here’s the list!
+                                    </>
+                                )}
+                            />
                             <div className={styles.rental_site__container}>
                                 {rentSiteData.map((item,index) => (
                                     <RentSiteCard

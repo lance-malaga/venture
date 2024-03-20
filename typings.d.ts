@@ -10,3 +10,15 @@ interface IRentSiteProps {
     desc: string;
     link: string;
 }
+
+interface ITitleSectionProps {
+    title: string;
+    desc: any;
+}
+
+interface IParksLayoutProps {
+    name: string;
+    desc: string;
+    image: string;
+    link: string;
+}
