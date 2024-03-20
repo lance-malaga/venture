@@ -149,6 +149,12 @@
 }
 
 
+.featured_parks {
+  margin-top: 100px;
+  padding: 0 80px;
+}
+
+
 @media (max-width: 650px) {
   .cityInfoContainer {
     flex-direction: column;
