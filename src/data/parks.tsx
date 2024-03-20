@@ -9,6 +9,12 @@ export const parks = [
         'Confederation Park',
         'Byrne Creek Ravine Park',
       ],
+      popularPark: {
+        name: 'Deer Lake Park',
+        desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora.',
+        image: '/images/popular-parks/burnaby-deer-lake.png',
+        link: `https://maps.app.goo.gl/Mgy8DFhoy4MyDwY46`,
+      },
     },
     {
       city: 'Richmond',
@@ -21,6 +27,12 @@ export const parks = [
         'Middle Arm Waterfront Greenway',
         'Aberdeen Neighbourhood Park',
       ],
+      popularPark: {
+        name: 'Garry Point Park',
+        desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora.',
+        image: '/images/popular-parks/richmond-gary-point.png',
+        link: `https://maps.app.goo.gl/Q6gGHXbEbtjxuXpw7`,
+      },
     },
     {
       city: 'Westvan',
@@ -32,6 +44,12 @@ export const parks = [
         'Lighthouse Park',
         'Horshoe Bay Park',
       ],
+      popularPark: {
+        name: 'Ambleside Park',
+        desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora.',
+        image: '/images/popular-parks/westvan-ambleside.png',
+        link: `https://maps.app.goo.gl/YLtDnYEaUzM7cxhu6`,
+      },
     },
     {
       city: 'NewWest',
@@ -42,6 +60,12 @@ export const parks = [
         'Quayside Park',
         'Tipperary Park',
       ],
+      popularPark: {
+        name: 'Queens Park',
+        desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora.',
+        image: '/images/popular-parks/new-west-queens.png',
+        link: `https://maps.app.goo.gl/tNrjvoAqQALv2jG28`,
+      },
     },
     {
       city: 'Delta',
@@ -52,6 +76,12 @@ export const parks = [
         'Watershed Park',
         'Deas Island Regional Park',
       ],
+      popularPark: {
+        name: 'Diefenbaker Park',
+        desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora.',
+        image: '/images/popular-parks/delta-diefenbaker.png',
+        link: `https://maps.app.goo.gl/ED7onwQjFUgrXKMX9`,
+      },
     },
     {
       city: 'Coquitlam',
@@ -62,6 +92,12 @@ export const parks = [
         'Coquitlam Crunch',
         'Cates Park',
       ],
+      popularPark: {
+        name: 'Town Centre Park',
+        desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora.',
+        image: '/images/popular-parks/coquitlam-town-centre.png',
+        link: `https://maps.app.goo.gl/kjMs9QqLJfGHQNWG9`,
+      },
     },
     {
       city: 'Surrey',
@@ -76,5 +112,11 @@ export const parks = [
         'Northview Park',
         'Surrey Bend Park'
       ],
+      popularPark: {
+        name: 'Holland Park',
+        desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora.',
+        image: '/images/popular-parks/surrey-holland.png',
+        link: `https://maps.app.goo.gl/BA213a7qC9osLUvm8`,
+      },
     },
   ];
