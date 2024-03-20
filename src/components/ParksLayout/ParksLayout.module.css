@@ -1,0 +1,49 @@
+.parks_layout {
+    margin-top: 60px;
+    display: flex;
+    gap: 70px;
+    flex-wrap: wrap;
+}
+.parks_layout img {
+    width: 50%;
+}
+.parks_layout div {
+    width: 40%;
+}
+.parks_layout h5 {
+    text-transform: uppercase;
+    font-weight: var(--font-bold);
+    font-size: 20px;
+}
+.parks_layout hr {
+    border-top: 5px solid var(--color-black);
+    height: 0;
+    width: 60px;
+    margin-top: 5px;
+}
+.parks_layout p {
+    text-align: justify;
+    margin: 30px 0 100px;
+}
+.parks_layout button {
+    color: var(--color-white);
+    padding: 18px 60px;
+    text-align: center;
+    background-color: var(--color-black);
+    transition: .3s all ease-in-out;
+}
+.parks_layout button:hover {
+    opacity: 0.7;
+}
+
+@media (max-width: 900px) {
+    .parks_layout {
+        gap: 50px;
+    }
+    .parks_layout img {
+        width: 100%;
+    }
+    .parks_layout div {
+        width: 100%;
+    }
+}

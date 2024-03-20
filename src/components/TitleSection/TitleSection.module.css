@@ -1,0 +1,12 @@
+.title_section h4 {
+    font-family: var(--font-primary);
+    font-size: 40px;
+    font-weight: var(--font-bold);
+    letter-spacing: 9.6px;
+}
+
+@media (max-width: 650px) {
+    .title_section br {
+        display: none;
+    }
+}

@@ -7,6 +7,8 @@ import CustomHead from "@/components/CustomHead";
 import Header from "@/components/Header";
 import MapFilter from '@/components/Mapfilter/mapfilter';
 import PageTitle from '@/components/PageTitle';
+import ParksLayout from '@/components/ParksLayout';
+import TitleSection from '@/components/TitleSection';
 
 interface Park {
   park: string;
@@ -30,6 +32,13 @@ const Parksapi = () => {
   const [selectedCity, setSelectedCity] = useState<string>('Vancouver');
   const [vancouverParks, setVancouverParks] = useState<Park[]>([]);
   const [parkImageSrc, setParkImageSrc] = useState<string>('/images/parks/parks-vancouver.png');
+
+  const vancouverPark = {
+    name: 'Stanley Park',
+    desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora.',
+    image: '/images/popular-parks/vancouver-stanley.png',
+    link: `https://maps.app.goo.gl/WJPinT86HpHP3dhV7`,
+  }
 
   useEffect(() => {
     if (selectedCity === 'Vancouver') {
@@ -76,6 +85,8 @@ const Parksapi = () => {
   const parksToShow = selectedCity === 'Vancouver' ? vancouverParks : localParks;
   const [parks, setParks] = useState<Park[]>([{ park: 'Stanley Park', city: 'Vancouver' }]); 
   const cityDescription = cityDescriptions[selectedCity] || 'Description for this city is not available.';
+
+  console.log(localCityParks)
 
   return (
     <div>
@@ -127,6 +138,18 @@ const Parksapi = () => {
             className={styles.imageStyle} 
           />
         </div>
+      </div>
+      <div className={styles.featured_parks}>
+          <TitleSection
+            title='EXPLORE THE NEIGHBORHOOD'
+            desc={`Take a look at one of the most popular parks in ${selectedCity}!`}
+          />
+          <ParksLayout
+            name={selectedCity === 'Vancouver' ? vancouverPark.name : localCityParks?.popularPark.name || ''}
+            desc={selectedCity === 'Vancouver' ? vancouverPark.desc : localCityParks?.popularPark.desc || ''}
+            link={selectedCity === 'Vancouver' ? vancouverPark.link : localCityParks?.popularPark.link || ''}
+            image={selectedCity === 'Vancouver' ? vancouverPark.image : localCityParks?.popularPark.image || ''}
+          />          
       </div>
       <Footer />
     </div>
