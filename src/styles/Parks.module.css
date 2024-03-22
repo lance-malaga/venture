@@ -190,3 +190,8 @@ font-size: 0.9rem;
   }
 }
 
+.parksList {
+  list-style-type: disc; 
+  padding-left: 20px; 
+}
+

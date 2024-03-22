@@ -130,10 +130,10 @@ const Parksapi = () => {
           />
           <p className={styles.cityDescription}>{cityDescription}</p>
           <ul className={styles.parksList}>
-            {parksToShow.map((park, index) => (
-              <li key={index}>{park.park}</li>
-            ))}
-          </ul>
+  {parksToShow.map((park, index) => (
+    <li key={index}>{park.park}</li>
+  ))}
+</ul>
         </div>
         <div className={styles.mapContainer}>
         <MapFilter />
