@@ -89,19 +89,24 @@ const Parksapi = () => {
   console.log(localCityParks)
 
   return (
-    <div>
-       <Header />
+   
+  <div className={styles.parksHeader}>
+        <Header />
        <CustomHead/>
+      
        <PageTitle />
+       <div className='flex flex-row gap-10'>
       <div className={styles.dropdownWrapper}>
         <label htmlFor="city-select" className={styles.dropdownLabel}>CITY:</label>
-        
+       
         <select
-          id="city-select"
-          value={selectedCity}
-          onChange={handleCityChange}
-          className={styles.citySelect}
-        >
+         id="city-select"
+         value={selectedCity}
+         onChange={handleCityChange}
+         className={styles.citySelect}
+       >
+         <option value="" disabled>Select a city</option>lassName={styles.citySelect}
+        
           {Object.keys(cityDescriptions).map((city, index) => (
             <option key={index} value={city}>
               {city}
@@ -109,10 +114,13 @@ const Parksapi = () => {
 
           ))}
         </select>
-      </div>
+      </div></div>
       <div className={styles.cityInfoContainer} data-testid="city-info-container">
         <div className={styles.parkDetailsContainer}>
-          <h3 className={styles.cityParksTitle}>{selectedCity} Parks</h3>
+        <h3 className={styles.cityParksTitle}>
+  {selectedCity} Parks
+  <div className={styles.titleUnderline}></div> {}
+</h3>
           <span className={styles.greenNumber}>{parksToShow.length.toString().padStart(2, '0')}</span>
           <Image
             src="/images/parks/tree.png"
