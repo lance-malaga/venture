@@ -4,9 +4,9 @@
   justify-content: space-between;
   align-items: flex-start;
   gap: 20px;
-  padding: 0 80px;
+  padding: 0 60px;
   padding-top: 60px; 
-  margin-top: 60px;
+  margin-top: 0;
 }
 
 
@@ -31,11 +31,13 @@
   font-size: 2rem;
   font-weight: bold;
   margin-bottom: 0.5rem;
+  align-items: left;
+ 
 }
 
 
 .greenNumber {
-  font-size: 6rem;
+  font-size: 5rem;
   color: #008E6F;
   font-weight: bold;
   margin-bottom: 20px;
@@ -57,14 +59,19 @@
 
 
 .dropdownLabel {
-  font-weight: bold;
+
   margin-right: 1rem;
+  margin-right: 20px; 
+
 }
 
 
 .dropdownWrapper {
   position: relative;
   display: inline-block;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 5;
 }
 
 
@@ -72,12 +79,20 @@
   width: auto;
   border: none;
   background-color: transparent;
-  padding: 5px 30px 5px 10px;
-  font-size: 1rem;
+
+font-size: 0.9rem;
   border-bottom: 2px solid #000;
   text-transform: uppercase;
-}
+  display: flex;
+  flex-direction: row;
+  align-self: flex-start;
 
+
+
+}
+.parksHeader {
+  padding: 10px; 
+}
 
 .dropdownWrapper::after {
   font-size: 1rem;
@@ -97,11 +112,13 @@
 .imageStyle {
   width: 100%; 
   height: auto;
+  padding-top: 0; 
+  max-width: none;
 }
 
 
 .mapContainer {
-  width: 800px; 
+  width: 100%; 
   padding: 20px;
 }
 
@@ -171,5 +188,10 @@
   .cityInfoContainer {
     padding: 25px;
   }
+}
+
+.parksList {
+  list-style-type: disc; 
+  padding-left: 20px; 
 }
 
