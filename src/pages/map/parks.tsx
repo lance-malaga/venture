@@ -91,63 +91,72 @@ const Parksapi = () => {
   
   return (
     <>
-    <CustomHead name={'Parks Map'}/>
-    <div className={styles.parksHeaderHeader}>
-      <Header />
-    </div>
-
-    <PageTitle />
-    
-    <div className='flex flex-row gap-10'>
-      <div className={styles.dropdownWrapper}>
-        <label htmlFor="city-select" className={styles.dropdownLabel}>CITY:</label>
-        <select
-          id="city-select"
-          value={selectedCity}
-          onChange={handleCityChange}
-          className={styles.citySelect}
-        >
-          {/* The "Select a city" option should not be disabled so it can be displayed by default */}
-          <option value="">Select a city</option>
-          {Object.keys(cityDescriptions).map((city, index) => (
-            <option key={index} value={city}>{city}</option>
-          ))}
-        </select>
+      <CustomHead name={'Parks Map'}/>
+      <div className={styles.parksHeaderHeader}>
+        <Header />
       </div>
-    </div>
 
-    <div className={styles.cityInfoContainer} data-testid="city-info-container">
-      <div className={styles.parkDetailsContainer}>
-        <h3 className={styles.cityParksTitle}>
-          {selectedCity} Parks
-          <div className={styles.titleUnderline}></div> {}
-        </h3>
-        <span className={styles.greenNumber}>{parksToShow.length.toString().padStart(2, '0')}</span>
-        <Image
-          src="/images/parks/tree.png"
-          alt="tree"
-          width={100}
-          height={100}
-        />
-        <p className={styles.cityDescription}>{cityDescription}</p>
-        <ul className={styles.parksList}>
-          {parksToShow.map((park, index) => (
-            <li key={index}>{park.park}</li>
-          ))}
-        </ul>
-        </div>
-        <div className={styles.mapContainer}>
+      <PageTitle />
+
+      <div className={styles.cityInfoContainer} data-testid="city-info-container">
+        <div className={styles.mainContentContainer}>
+          <div className={styles.dropdownWrapper}>
+            <label htmlFor="city-select" className={styles.dropdownLabel}>CITY:</label>
+            <select
+              id="city-select"
+              value={selectedCity}
+              onChange={handleCityChange}
+              className={styles.citySelect}
+            >
+              {/* The "Select a city" option should not be disabled so it can be displayed by default */}
+              <option value="">Select a city</option>
+              {Object.keys(cityDescriptions).map((city, index) => (
+                <option key={index} value={city}>{city}</option>
+              ))}
+            </select>
+          </div>
           <MapFilter />
-          <Image
-            src="/images/parks/parks-vancouver.png"
-            alt={`${selectedCity} park map`}
-            layout="responsive"
-            width={200}  
-            height={250}
-            className={styles.imageStyle} 
-          />
+        </div>
+
+        <div className={styles.mainContentContainer}>
+          <div className={styles.parkDetailsContainer}>
+            <h3 className={styles.cityParksTitle}>
+              {selectedCity} Parks
+              <div className={styles.titleUnderline}></div> {}
+            </h3>
+            <div className={styles.imageContainer}>
+              <div>
+                <p>PARKS</p>
+                <span className={styles.greenNumber}>{parksToShow.length.toString().padStart(2, '0')}</span>
+              </div>
+              <Image
+                src="/images/parks/tree.svg"
+                alt="tree"
+                width={100}
+                height={100}
+              />
+            </div>
+            <p className={styles.cityDescription}>{cityDescription}</p>
+            <ul className={styles.parksList}>
+              {parksToShow.map((park, index) => (
+                <li key={index}>{park.park}</li>
+              ))}
+            </ul>
+          </div>
+          <div className={styles.mapContainer}>
+            <Image
+              src="/images/parks/parks-vancouver.png"
+              alt={`${selectedCity} park map`}
+              layout="responsive"
+              width={200}  
+              height={250}
+              className={styles.imageStyle} 
+            />
+          </div>
         </div>
       </div>
+
+      {/* featured parks */}
       <div className={styles.featured_parks}>
         {selectedCity && selectedCity !== "Select a city" && (
           <TitleSection
@@ -167,7 +176,7 @@ const Parksapi = () => {
         }        
       </div>
       <Footer />
-]    </>
+    </>
   );
 };
           
