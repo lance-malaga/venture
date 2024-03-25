@@ -69,7 +69,6 @@ const Parksapi = () => {
   
   useEffect(() => {
     const imageName = `parks-${selectedCity.toLowerCase().replace(/ /g, '-')}.png`;
-    console.log(imageName)
     setParkImageSrc(`/images/parks/${imageName}`);
   }, [selectedCity]);
   
@@ -136,6 +135,7 @@ const Parksapi = () => {
             </div>
             <p className={styles.cityDescription}>{cityDescription}</p>
             <ul className={styles.parksList}>
+              {selectedCity === 'Vancouver' && <li>Stanley Park</li>}
               {parksToShow.map((park, index) => (
                 <li key={index}>{park.park}</li>
               ))}
