@@ -9,6 +9,7 @@ import RentSiteCard from '@/components/RentSiteCard';
 import TitleSection from '@/components/TitleSection';
 import Link from 'next/link';
 import { rentSiteData } from '@/data/rentSite';
+import { citiesMissing } from '@/data/avgOtherCity';
 
 export default function AvgRent() {
     const [selectedCity, setSelectedCity] = useState("Vancouver");
@@ -47,6 +48,18 @@ export default function AvgRent() {
             image: '/images/citiesRent/avg-rent-richmond.svg',
             info: 'Rental data is collected from various sources such as real estate agencies, surveys, and government databases. Provided here is the average rent for Richmond in USD'
         },
+        {
+            city: 'West Vancouver',
+            image: '/images/citiesRent/avg-rent-westvan.svg',
+            info: 'Rental data is collected from various sources such as real estate agencies, surveys, and government databases. Provided here is the average rent for West Vancouver in USD',
+            rent: 2500
+        },
+        {
+            city: 'Delta',
+            image: '/images/citiesRent/avg-rent-delta.svg',
+            info: 'Rental data is collected from various sources such as real estate agencies, surveys, and government databases. Provided here is the average rent for Delta in USD',
+            rent: 1700   
+        }
     ];
 
     const areas: string[] = [
@@ -68,7 +81,6 @@ export default function AvgRent() {
             fetch(url, options)
                 .then(response => response.json())
                 .then(response => {
-                    console.log(response);
                     setCostData(response);
                 })
                 .catch(err => {
@@ -80,6 +92,9 @@ export default function AvgRent() {
     const handleChange = (event: string) => {
         setSelectedCity(event);
     };
+
+    const cityData = selectedCity == 'West Vancouver' || selectedCity == 'Delta' ? citiesMissing.filter(data => data.city === selectedCity) : '';
+    console.log(costData)
 
     return (
         <>
@@ -103,20 +118,25 @@ export default function AvgRent() {
                                             style={{marginTop: '25%'}}>
                                         AVERAGE RENT
                                         </div>
-
-                                        {costData && (
-                                    <div className={styles.content_api}>
-                                        <div>
-                                            <h2 style={{color: "#364EC0", fontWeight: 'bold'}}>${costData["Cost of Living Month Total"]}</h2>
-                                        </div>
-                                        {citiesRent
-                                        .filter(cityData => cityData.city === selectedCity)
-                                        .map(cityData => (
-                                            <div>{cityData.info}</div>
-                                        ))
-                                    }
-                                    </div>
-                                )}
+                                        { costData && (
+                                            <div className={styles.content_api}>
+                                                <div>
+                                                    <h2>
+                                                        ${selectedCity === 'West Vancouver' || selectedCity === 'Delta' ? (
+                                                            cityData && cityData[0]?.rent
+                                                        ) : (
+                                                            costData["Cost of Living Month Total"]
+                                                        )}
+                                                    </h2>
+                                                </div>
+                                                {citiesRent
+                                                    .filter(cityData => cityData.city === selectedCity)
+                                                    .map(cityData => (
+                                                        <div>{cityData.info}</div>
+                                                    ))
+                                                }
+                                            </div>
+                                        )}
 
                                         <div
                                             style={{
