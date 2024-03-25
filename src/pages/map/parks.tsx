@@ -16,9 +16,15 @@ interface Park {
   city: string;
 }
 
-
-const cityDescriptions: { [key: string]: string } = {
-  Vancouver: 'Vancouvers parks blend urban vitality with natural splendor, offering a variety of green spaces for relaxation and adventure, including majestic skyline views and hidden trails. These urban oasises are family-friendly, providing educational opportunities and highlighting the ecological diversity of the region. The citys dedication to nature is evident in the well-preserved shorelines and mountain vistas that are easily accessible to all.',
+const cityDescriptions: { [key: string]: JSX.Element | string } = {
+  Vancouver: (
+    <>
+      <p>Vancouver's parks blend urban vitality with natural splendor, offering a variety of green spaces for relaxation and adventure, including majestic skyline views and hidden trails. These urban oases are family-friendly, providing educational opportunities and highlighting the ecological diversity of the region. The city's dedication to nature is evident in the well-preserved shorelines and mountain vistas that are easily accessible to all.</p>
+      <ul>
+        <li className={styles.stanleyParkHighlight}>Stanley Park</li>
+      </ul>
+    </>
+  ),
   Burnaby: 'Burnabys parks are urban sanctuaries with tranquil lakes, dense forests, and ample recreational spaces that invite residents to connect with nature. The extensive trail systems and family-friendly facilities underscore the citys commitment to environmental preservation and community engagement. These green spaces serve as vital habitats for wildlife, balancing urban development with natural beauty.',
   Richmond: 'Richmonds parks celebrate the citys cultural heritage and natural beauty, with scenic spots like Garry Point Park for picnics and Iona Beach for birdwatching. These diverse green spaces offer walking paths, wildlife viewing, and educational experiences in local ecology. Richmond is an ideal locale for those seeking outdoor activities and peaceful retreats.',
   WestVan: 'West Vancouvers parks offer a serene blend of sandy beaches, historic sites, and adventurous trails, showcasing the harmony between land and sea. The picturesque coastline and mountainous backdrops provide a tranquil setting for relaxation and family-friendly activities. The citys commitment to preserving its natural landscapes offers residents and visitors a peaceful escape into nature.',
@@ -40,7 +46,11 @@ const Parksapi = () => {
     image: '/images/popular-parks/vancouver-stanley.png',
     link: `https://maps.app.goo.gl/WJPinT86HpHP3dhV7`,
   }
-
+  const vancouverAdditionalInfo = (
+    <ul className={styles.vancouverAdditionalInfo}>
+      <li>Stanley Park </li>
+    </ul>
+  );
   useEffect(() => {
     if (selectedCity === 'Vancouver') {
       const fetchVancouverParks = async () => {
@@ -122,6 +132,7 @@ const Parksapi = () => {
       </div></div>
       <div className={styles.cityInfoContainer} data-testid="city-info-container">
         <div className={styles.parkDetailsContainer}>
+          
         <h3 className={styles.cityParksTitle}>
   {selectedCity} Parks
   <div className={styles.titleUnderline}></div> {}
