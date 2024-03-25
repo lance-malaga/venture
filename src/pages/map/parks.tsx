@@ -3,13 +3,12 @@ import { parks as localParksData } from '@/data/parks';
 import styles from '@/styles/Parks.module.css';
 import Image from 'next/image';
 import Footer from "@/components/Footer";
-import CustomHead from "@/components/CustomHead";
 import Header from "@/components/Header";
 import MapFilter from '@/components/Mapfilter/mapfilter';
 import PageTitle from '@/components/PageTitle';
 import ParksLayout from '@/components/ParksLayout';
 import TitleSection from '@/components/TitleSection';
-import CityFilter from '@/components/Cityfilter/cityfilter';
+
 
 interface Park {
   park: string;
@@ -121,7 +120,7 @@ const Parksapi = () => {
           onChange={handleCityChange}
           className={styles.citySelect}
         >
-          {/* The "Select a city" option should not be disabled so it can be displayed by default */}
+          {}
           <option value="">Select a city</option>
           {Object.keys(cityDescriptions).map((city, index) => (
             <option key={index} value={city}>
