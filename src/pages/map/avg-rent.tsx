@@ -101,7 +101,7 @@ export default function AvgRent() {
                                 <div style={{ width: '60px', height: '5px', backgroundColor: 'black', marginTop: '5px'}}></div>
                                     <div className="text-l uppercase"
                                             style={{marginTop: '25%'}}>
-                                        AVERAGE RENT in 2020
+                                        AVERAGE RENT
                                         </div>
 
                                         {costData && (
