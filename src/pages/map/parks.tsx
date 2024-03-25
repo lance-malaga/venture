@@ -107,8 +107,9 @@ const Parksapi = () => {
             >
               {/* The "Select a city" option should not be disabled so it can be displayed by default */}
               <option value="">Select a city</option>
-              {Object.keys(cityDescriptions).map((city, index) => (
-                <option key={index} value={city}>{city}</option>
+              <option value="Vancouver">Vancouver</option>
+              {localParksData.map((city, index) => (
+                <option key={index} value={city.city}>{city.city}</option>
               ))}
             </select>
           </div>

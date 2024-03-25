@@ -35,7 +35,7 @@ export const parks = [
       },
     },
     {
-      city: 'Westvan',
+      city: 'West Vancouver',
       parks: [
         'Ambleside Park',
         'Caulfeild Park',
@@ -52,7 +52,7 @@ export const parks = [
       },
     },
     {
-      city: 'NewWest',
+      city: 'New West',
       parks: [
         'Queens Park',
         'Moody Park',
