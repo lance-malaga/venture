@@ -21,7 +21,7 @@ export default function Density() {
     };
 	return (
 		<>
-			<CustomHead name={'Map Density'}/>
+			<CustomHead name={'Density Map'}/>
 			<div className={styles.home__container}>
 				<div className={styles.content__container}>
 					<Header/>

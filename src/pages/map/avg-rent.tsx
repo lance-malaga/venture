@@ -84,7 +84,7 @@ export default function AvgRent() {
 
     return (
         <>
-            <CustomHead name={'avg-rent'}/>
+            <CustomHead name={'Avergae Rent Map'}/>
             <div className={styles.home__container}>
                 <div className={styles.content__container}>
                     <Header />
