@@ -17,7 +17,7 @@ interface Park {
 }
 
 
-const cityDescriptions: { [key: string]: JSX.Element | string } = {
+const cityDescriptions: { [key: string]: string } = {
   Vancouver: `Vancouver's parks blend urban vitality with natural splendor, offering a variety of green spaces for relaxation and adventure, including majestic skyline views and hidden trails.`,
   Burnaby: `Burnaby's green spaces serve as vital habitats for wildlife, balancing urban development with natural beauty.`,
   Richmond: `Richmond's parks celebrate the citys cultural heritage and natural beauty, with scenic spots like Garry Point Park for picnics and Iona Beach for birdwatching.`,
