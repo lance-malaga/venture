@@ -20,38 +20,37 @@ export default function AvgRent() {
         {
             city: 'Vancouver',
             image: '/images/citiesRent/avg-rent-vancouver.svg',
-            info: 'Rental data is collected from various sources such as real estate agencies, property management companies, online rental platforms, surveys, and government databases. Provided here is the average rent for Vancouver'
+            info: 'Rental data is collected from various sources such as real estate agencies, surveys, and government databases. Provided here is the average rent for Vancouver in USD'
         },
         {
             city: 'Burnaby',
             image: '/images/citiesRent/avg-rent-burnaby.svg',
-            info: 'Rental data is collected from various sources such as real estate agencies, property management companies, online rental platforms, surveys, and government databases. Provided here is the average rent for Burnaby'
+            info: 'Rental data is collected from various sources such as real estate agencies, surveys, and government databases. Provided here is the average rent for Burnaby in USD'
         },
         {
             city: 'New-Westminster',
             image: '/images/citiesRent/avg-rent-new-west.svg',
-            info: 'Rental data is collected from various sources such as real estate agencies, property management companies, online rental platforms, surveys, and government databases. Provided here is the average rent for New-Westminster'
+            info: 'Rental data is collected from various sources such as real estate agencies, surveys, and government databases. Provided here is the average rent for New-Westminster in USD'
         },
         {
             city: 'Surrey',
             image: '/images/citiesRent/avg-rent-surrey.svg',
-            info: 'Rental data is collected from various sources such as real estate agencies, property management companies, online rental platforms, surveys, and government databases. Provided here is the average rent for Surrey'
-            
+            info: 'Rental data is collected from various sources such as real estate agencies, surveys, and government databases. Provided here is the average rent for Surrey in USD'
         },
         {
             city: 'Coquitlam',
             image: '/images/citiesRent/avg-rent-coquitlam.svg',
-            info: 'Rental data is collected from various sources such as real estate agencies, property management companies, online rental platforms, surveys, and government databases. Provided here is the average rent for Coquitlam'
+            info: 'Rental data is collected from various sources such as real estate agencies, surveys, and government databases. Provided here is the average rent for Coquitlam in USD'
         },
         {
             city: 'Richmond',
             image: '/images/citiesRent/avg-rent-richmond.svg',
-            info: 'Rental data is collected from various sources such as real estate agencies, property management companies, online rental platforms, surveys, and government databases. Provided here is the average rent for Richmond'
+            info: 'Rental data is collected from various sources such as real estate agencies, surveys, and government databases. Provided here is the average rent for Richmond in USD'
         },
     ];
 
     const areas: string[] = [
-        'Vancouver', 'Burnaby', 'New-Westminster', 'Surrey',
+        'Vancouver', 'West Vancouver', 'Burnaby', 'New-Westminster', 'Delta', 'Surrey',
         'Coquitlam', 'Richmond'
     ];
 
@@ -102,15 +101,14 @@ export default function AvgRent() {
                                 <div style={{ width: '60px', height: '5px', backgroundColor: 'black', marginTop: '5px'}}></div>
                                     <div className="text-l uppercase"
                                             style={{marginTop: '25%'}}>
-                                        AVERAGE RENT
+                                        AVERAGE RENT in 2020
                                         </div>
 
                                         {costData && (
                                     <div className={styles.content_api}>
-                                        <h2>{costData["City Name"]}</h2>
-                                        {/* <div>
-                                            <h2>Cost of Living in {costData["Cost of Living Month Total"]}</h2>
-                                        </div> */}
+                                        <div>
+                                            <h2 style={{color: "#364EC0", fontWeight: 'bold'}}>${costData["Cost of Living Month Total"]}</h2>
+                                        </div>
                                         {citiesRent
                                         .filter(cityData => cityData.city === selectedCity)
                                         .map(cityData => (
