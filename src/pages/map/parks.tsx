@@ -69,6 +69,7 @@ const Parksapi = () => {
   
   useEffect(() => {
     const imageName = `parks-${selectedCity.toLowerCase().replace(/ /g, '-')}.png`;
+    console.log(imageName)
     setParkImageSrc(`/images/parks/${imageName}`);
   }, [selectedCity]);
   
@@ -106,7 +107,6 @@ const Parksapi = () => {
               className={styles.citySelect}
             >
               {/* The "Select a city" option should not be disabled so it can be displayed by default */}
-              <option value="">Select a city</option>
               <option value="Vancouver">Vancouver</option>
               {localParksData.map((city, index) => (
                 <option key={index} value={city.city}>{city.city}</option>

@@ -44,6 +44,7 @@ export const parks = [
         'Lighthouse Park',
         'Horshoe Bay Park',
       ],
+     
       popularPark: {
         name: 'Ambleside Park',
         desc: 'Ambleside Park, nestled along the shores of West Vancouver, is a popular destination that blends the tranquility of nature with a range of recreational activities. This expansive park boasts a stunning backdrop of the Lions Gate Bridge and Stanley Park, with panoramic views of the Vancouver skyline that captivate both locals and tourists. Its sprawling green spaces are perfect for picnics, while the sandy beach invites visitors to relax and enjoy the rhythmic sounds of the waves. Ambleside Park is also home to a variety of amenities, including walking trails, a pitch-and-putt golf course, tennis courts, and a dog park, making it a hub of outdoor activity. Throughout the year, the park serves as a venue for community events, art shows, and concerts, fostering a vibrant cultural scene. With its scenic beauty and lively atmosphere, Ambleside Park offers a unique blend of leisure and adventure, making it a cherished spot in West Vancouver.',
@@ -60,6 +61,7 @@ export const parks = [
         'Quayside Park',
         'Tipperary Park',
       ],
+
       popularPark: {
         name: 'Queens Park',
         desc: 'Queens Park, an urban oasis nestled in the heart of New Westminster, is a sprawling expanse of greenery and history, serving as a cherished gathering spot for the community and visitors alike. This historic park, established in 1887, is a testament to the citys rich heritage, offering a peaceful retreat with its lush gardens, mature trees, and meandering pathways. Its a place where families, fitness enthusiasts, and nature lovers converge, thanks to its wide array of facilities including playgrounds, sports fields, an outdoor fitness circuit, and the beloved petting zoo. The park also boasts beautifully preserved areas such as the Rose Garden and the Arboretum, perfect for leisurely strolls or finding inspiration in the tranquil surroundings. Throughout the year, Queens Park becomes a focal point for cultural celebrations, outdoor concerts, and community events, further enhancing its role as a vital green space in New Westminster that promotes connection, recreation, and relaxation.',
@@ -76,6 +78,7 @@ export const parks = [
         'Watershed Park',
         'Deas Island Regional Park',
       ],
+    
       popularPark: {
         name: 'Diefenbaker Park',
         desc: 'Diefenbaker Park, situated in the picturesque city of Delta, British Columbia, is a cherished green space that offers a tranquil escape from the urban environment. This park is named after John Diefenbaker, the 13th Prime Minister of Canada, and it reflects a sense of national pride and natural beauty. With its sprawling lawns, vibrant flower beds, and mature trees, the park provides a serene setting for leisurely walks, family picnics, and quiet reflection.',
@@ -92,6 +95,7 @@ export const parks = [
         'Coquitlam Crunch',
         'Cates Park',
       ],
+  
       popularPark: {
         name: 'Town Centre Park',
         desc: 'Town Centre Park, located in the heart of Coquitlam, is a vibrant hub of outdoor activity and community life, embodying the dynamic spirit of the city. This versatile park is renowned for its beautifully designed Lafarge Lake, a man-made lake that serves as a focal point for visitors seeking a scenic stroll or a peaceful moment by the water. Surrounding the lake, a network of trails caters to walkers, joggers, and cyclists, offering picturesque views at every turn. The parks extensive facilities, including sports fields, tennis courts, and playgrounds, accommodate a wide range of recreational activities, ensuring theres something for everyone.  ',
@@ -112,6 +116,7 @@ export const parks = [
         'Northview Park',
         'Surrey Bend Park'
       ],
+  
       popularPark: {
         name: 'Holland Park',
         desc: 'Holland Park, often referred to as the "Central Park" of Surrey, British Columbia, is an urban oasis amidst the bustling cityscape. This contemporary park is celebrated for its innovative design and multifaceted recreational offerings, making it a focal point of community life in Surrey. Its meticulously landscaped gardens, interactive water features, and expansive open spaces provide a peaceful retreat for residents and visitors alike. Holland Park hosts a variety of events throughout the year, from outdoor concerts to cultural festivals, drawing crowds with its vibrant atmosphere and scenic beauty. ',
