@@ -3,13 +3,13 @@ import { parks as localParksData } from '@/data/parks';
 import styles from '@/styles/Parks.module.css';
 import Image from 'next/image';
 import Footer from "@/components/Footer";
-import CustomHead from "@/components/CustomHead";
 import Header from "@/components/Header";
 import MapFilter from '@/components/Mapfilter/mapfilter';
 import PageTitle from '@/components/PageTitle';
 import ParksLayout from '@/components/ParksLayout';
 import TitleSection from '@/components/TitleSection';
-import CityFilter from '@/components/Cityfilter/cityfilter';
+import CustomHead from '@/components/CustomHead';
+
 
 interface Park {
   park: string;
@@ -17,7 +17,7 @@ interface Park {
 }
 
 
-const cityDescriptions: { [key: string]: string } = {
+const cityDescriptions: { [key: string]: JSX.Element | string } = {
   Vancouver: `Vancouver's parks blend urban vitality with natural splendor, offering a variety of green spaces for relaxation and adventure, including majestic skyline views and hidden trails.`,
   Burnaby: `Burnaby's green spaces serve as vital habitats for wildlife, balancing urban development with natural beauty.`,
   Richmond: `Richmond's parks celebrate the citys cultural heritage and natural beauty, with scenic spots like Garry Point Park for picnics and Iona Beach for birdwatching.`,
@@ -26,7 +26,6 @@ const cityDescriptions: { [key: string]: string } = {
   NewWest: `New Westminster parks blend historical charm with verdant landscapes, providing urban oases for leisure and recreation along the Fraser River.`,
   Delta: `Deltas parks, where the Fraser River meets the sea, showcase the regions ecological diversity with beachfronts and wetlands serving as gateways to nature.`,
   Coquitlam: `Coquitlam's green spaces are filled with activity, from picnic gatherings to extensive trail networks, ensuring theres something for everyone.`,
-  
 };
 
 const Parksapi = () => {
@@ -86,9 +85,7 @@ const Parksapi = () => {
   const parksToShow = selectedCity === 'Vancouver' ? vancouverParks : localParks;
   const [parks, setParks] = useState<Park[]>([{ park: 'Stanley Park', city: 'Vancouver' }]); 
   const cityDescription = cityDescriptions[selectedCity] || 'Select a city to view the most popular parks.';
-  
-  console.log(localCityParks)
-  
+    
   return (
     <>
       <CustomHead name={'Parks Map'}/>
@@ -145,7 +142,7 @@ const Parksapi = () => {
           </div>
           <div className={styles.mapContainer}>
             <Image
-              src="/images/parks/parks-vancouver.png"
+              src={parkImageSrc}
               alt={`${selectedCity} park map`}
               layout="responsive"
               width={200}  
