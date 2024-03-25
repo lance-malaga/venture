@@ -8,6 +8,7 @@ import MapFilter from '@/components/Mapfilter/mapfilter';
 import PageTitle from '@/components/PageTitle';
 import ParksLayout from '@/components/ParksLayout';
 import TitleSection from '@/components/TitleSection';
+import CustomHead from '@/components/CustomHead';
 
 
 interface Park {
@@ -15,41 +16,30 @@ interface Park {
   city: string;
 }
 
-const cityDescriptions: { [key: string]: JSX.Element | string } = {
-  Vancouver: (
-    <>
-      <p>Vancouver's parks blend urban vitality with natural splendor, offering a variety of green spaces for relaxation and adventure, including majestic skyline views and hidden trails. These urban oases are family-friendly, providing educational opportunities and highlighting the ecological diversity of the region. The city's dedication to nature is evident in the well-preserved shorelines and mountain vistas that are easily accessible to all.</p>
-      <ul>
-        <li className={styles.stanleyParkHighlight}>Stanley Park</li>
-      </ul>
-    </>
-  ),
-  Burnaby: 'Burnabys parks are urban sanctuaries with tranquil lakes, dense forests, and ample recreational spaces that invite residents to connect with nature. The extensive trail systems and family-friendly facilities underscore the citys commitment to environmental preservation and community engagement. These green spaces serve as vital habitats for wildlife, balancing urban development with natural beauty.',
-  Richmond: 'Richmonds parks celebrate the citys cultural heritage and natural beauty, with scenic spots like Garry Point Park for picnics and Iona Beach for birdwatching. These diverse green spaces offer walking paths, wildlife viewing, and educational experiences in local ecology. Richmond is an ideal locale for those seeking outdoor activities and peaceful retreats.',
-  WestVan: 'West Vancouvers parks offer a serene blend of sandy beaches, historic sites, and adventurous trails, showcasing the harmony between land and sea. The picturesque coastline and mountainous backdrops provide a tranquil setting for relaxation and family-friendly activities. The citys commitment to preserving its natural landscapes offers residents and visitors a peaceful escape into nature.',
-  Surrey: 'Surreys parks, such as the tranquil Holland Park and expansive Surrey Bend Regional Park, offer a green escape for all. With Bear Creek Parks ecosystems, Fleetwood Parks gardens, and Blackie Spit Parks waterfront views, the city showcases a commitment to accessible outdoor spaces. Tynehead Park and Unwin Park cater to nature enthusiasts and families seeking adventure and relaxation in Surreys natural beauty.',
-  NewWest: 'New Westminsters parks blend historical charm with verdant landscapes, providing urban oases for leisure and recreation along the Fraser River. The parks offer a variety of activities amidst lush gardens and scenic walks, reflecting the cits appreciation for its heritage and the environment. Here, community and nature come together, offering a place to connect with both history and modern urban living.',
-  Delta: 'Deltas parks, where the Fraser River meets the sea, showcase the regions ecological diversity with beachfronts and wetlands serving as gateways to nature. These spaces promote outdoor living and environmental stewardship, offering recreational and educational experiences. Deltas commitment to preserving its natural landscapes ensures a vibrant, healthy setting for community engagement and discovery.',
-  Coquitlam: 'Coquitlams parks are vibrant community hubs set against the backdrop of the regions natural splendor, supporting a strong commitment to outdoor living. These green spaces are filled with activity, from picnic gatherings to extensive trail networks, ensuring theres something for everyone. Coquitlams parks serve as a testament to the citys dedication to recreational and natural spaces. ',
 
+const cityDescriptions: { [key: string]: string } = {
+  Vancouver: `Vancouver's parks blend urban vitality with natural splendor, offering a variety of green spaces for relaxation and adventure, including majestic skyline views and hidden trails.`,
+  Burnaby: `Burnaby's green spaces serve as vital habitats for wildlife, balancing urban development with natural beauty.`,
+  Richmond: `Richmond's parks celebrate the citys cultural heritage and natural beauty, with scenic spots like Garry Point Park for picnics and Iona Beach for birdwatching.`,
+  WestVan: `West Vancouver's parks offer picturesque coastlines and mountainous backdrops, providing a tranquil setting for relaxation and family-friendly activities.`,
+  Surrey: `Surrey's parks, such as the tranquil Holland Park and expansive Surrey Bend Regional Park, offer a green escape for all nature enthusiasts and families seeking adventure and relaxation.`,
+  NewWest: `New Westminster parks blend historical charm with verdant landscapes, providing urban oases for leisure and recreation along the Fraser River.`,
+  Delta: `Deltas parks, where the Fraser River meets the sea, showcase the regions ecological diversity with beachfronts and wetlands serving as gateways to nature.`,
+  Coquitlam: `Coquitlam's green spaces are filled with activity, from picnic gatherings to extensive trail networks, ensuring theres something for everyone.`,
 };
 
 const Parksapi = () => {
-  const [selectedCity, setSelectedCity] = useState<string>('');
+  const [selectedCity, setSelectedCity] = useState<string>('Vancouver');
   const [vancouverParks, setVancouverParks] = useState<Park[]>([]);
   const [parkImageSrc, setParkImageSrc] = useState<string>('/images/parks/parks-vancouver.png');
-
+  
   const vancouverPark = {
     name: 'Stanley Park',
     desc: 'Stanley Park, a jewel in Vancouvers urban landscape, is a sprawling 400-hectare oasis of towering forests, scenic coastlines, and cultural landmarks. This vibrant green space, bordered by the famous Seawall, offers a refuge of natural beauty and historical significance, making it a beloved escape for both locals and visitors seeking solace from the cities hustle.',
     image: '/images/popular-parks/vancouver-stanley.png',
     link: `https://maps.app.goo.gl/WJPinT86HpHP3dhV7`,
   }
-  const vancouverAdditionalInfo = (
-    <ul className={styles.vancouverAdditionalInfo}>
-      <li>Stanley Park </li>
-    </ul>
-  );
+  
   useEffect(() => {
     if (selectedCity === 'Vancouver') {
       const fetchVancouverParks = async () => {
@@ -72,123 +62,120 @@ const Parksapi = () => {
           setVancouverParks([]);
         }
       };
-
+      
       fetchVancouverParks();
     }
   }, [selectedCity]);
-
+  
   useEffect(() => {
     const imageName = `parks-${selectedCity.toLowerCase().replace(/ /g, '-')}.png`;
     setParkImageSrc(`/images/parks/${imageName}`);
   }, [selectedCity]);
-
+  
   const handleCityChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedCity(event.target.value);
   };
-
+  
   const localCityParks = localParksData.find(group => group.city === selectedCity);
   const localParks = localCityParks ? localCityParks.parks.map(parkName => ({
     park: parkName,
     city: selectedCity,
   })) : [];
-
+  
   const parksToShow = selectedCity === 'Vancouver' ? vancouverParks : localParks;
   const [parks, setParks] = useState<Park[]>([{ park: 'Stanley Park', city: 'Vancouver' }]); 
   const cityDescription = cityDescriptions[selectedCity] || 'Select a city to view the most popular parks.';
-
-  console.log(localCityParks)
-
+    
   return (
     <>
-  <div className={styles.parksHeader}>
-        
-        <div className={styles.parksHeader}>
-  <div className={styles.parksHeaderHeader}>
-    <Header />
-  </div>
-  
-                              
-       <PageTitle />
-       
-       <div className='flex flex-row gap-10'>
-      <div className={styles.dropdownWrapper}>
-        <label htmlFor="city-select" className={styles.dropdownLabel}>CITY:</label>
-       
-        <select
-          id="city-select"
-          value={selectedCity}
-          onChange={handleCityChange}
-          className={styles.citySelect}
-        >
-          {}
-          <option value="">Select a city</option>
-          {Object.keys(cityDescriptions).map((city, index) => (
-            <option key={index} value={city}>
-              {city}
-            </option>
-          ))}
-        </select>
-      </div></div>
+      <CustomHead name={'Parks Map'}/>
+      <div className={styles.parksHeaderHeader}>
+        <Header />
+      </div>
+
+      <PageTitle />
+
       <div className={styles.cityInfoContainer} data-testid="city-info-container">
-        <div className={styles.parkDetailsContainer}>
-          
-        <h3 className={styles.cityParksTitle}>
-  {selectedCity} Parks
-  <div className={styles.titleUnderline}></div> {}
-</h3>
-          <span className={styles.greenNumber}>{parksToShow.length.toString().padStart(2, '0')}</span>
-          <Image
-            src="/images/parks/tree.png"
-            alt="tree"
-            width={100}
-            height={100}
-          />
-          <p className={styles.cityDescription}>{cityDescription}</p>
-          <ul className={styles.parksList}>
-  {parksToShow.map((park, index) => (
-    <li key={index}>{park.park}</li>
-  ))}
-</ul>
+        <div className={styles.mainContentContainer}>
+          <div className={styles.dropdownWrapper}>
+            <label htmlFor="city-select" className={styles.dropdownLabel}>CITY:</label>
+            <select
+              id="city-select"
+              value={selectedCity}
+              onChange={handleCityChange}
+              className={styles.citySelect}
+            >
+              {/* The "Select a city" option should not be disabled so it can be displayed by default */}
+              <option value="">Select a city</option>
+              {Object.keys(cityDescriptions).map((city, index) => (
+                <option key={index} value={city}>{city}</option>
+              ))}
+            </select>
+          </div>
+          <MapFilter />
         </div>
-        <div className={styles.mapContainer}>
-        <MapFilter />
-          <Image
-             src="/images/parks/parks-vancouver.png"
-            alt={`${selectedCity} park map`}
-            layout="responsive"
-            width={200}  
-            height={250}
-            className={styles.imageStyle} 
-          />
+
+        <div className={styles.mainContentContainer}>
+          <div className={styles.parkDetailsContainer}>
+            <h3 className={styles.cityParksTitle}>
+              {selectedCity} Parks
+              <div className={styles.titleUnderline}></div> {}
+            </h3>
+            <div className={styles.imageContainer}>
+              <div>
+                <p>PARKS</p>
+                <span className={styles.greenNumber}>{parksToShow.length.toString().padStart(2, '0')}</span>
+              </div>
+              <Image
+                src="/images/parks/tree.svg"
+                alt="tree"
+                width={100}
+                height={100}
+              />
+            </div>
+            <p className={styles.cityDescription}>{cityDescription}</p>
+            <ul className={styles.parksList}>
+              {parksToShow.map((park, index) => (
+                <li key={index}>{park.park}</li>
+              ))}
+            </ul>
+          </div>
+          <div className={styles.mapContainer}>
+            <Image
+              src={parkImageSrc}
+              alt={`${selectedCity} park map`}
+              layout="responsive"
+              width={200}  
+              height={250}
+              className={styles.imageStyle} 
+            />
+          </div>
         </div>
       </div>
+
+      {/* featured parks */}
       <div className={styles.featured_parks}>
-  {selectedCity && selectedCity !== "Select a city" && (
-    <TitleSection
-      title='EXPLORE THE NEIGHBORHOOD'
-      desc={`Take a look at one of the most popular parks in ${selectedCity}!`}
-    />
-  )}
-{
-  selectedCity && selectedCity !== "Select a city" && (
-    <ParksLayout
-      name={selectedCity === 'Vancouver' ? vancouverPark.name : localCityParks?.popularPark.name || ''}
-      desc={selectedCity === 'Vancouver' ? vancouverPark.desc : localCityParks?.popularPark.desc || ''}
-      link={selectedCity === 'Vancouver' ? vancouverPark.link : localCityParks?.popularPark.link || ''}
-      image={selectedCity === 'Vancouver' ? vancouverPark.image : localCityParks?.popularPark.image || ''}
-    />
-  )
-}        
+        {selectedCity && selectedCity !== "Select a city" && (
+          <TitleSection
+            title='EXPLORE THE NEIGHBORHOOD'
+            desc={`Take a look at one of the most popular parks in ${selectedCity}!`}
+          />
+        )}
+        {
+          selectedCity && selectedCity !== "Select a city" && (
+              <ParksLayout
+                name={selectedCity === 'Vancouver' ? vancouverPark.name : localCityParks?.popularPark.name || ''}
+                desc={selectedCity === 'Vancouver' ? vancouverPark.desc : localCityParks?.popularPark.desc || ''}
+                link={selectedCity === 'Vancouver' ? vancouverPark.link : localCityParks?.popularPark.link || ''}
+                image={selectedCity === 'Vancouver' ? vancouverPark.image : localCityParks?.popularPark.image || ''}
+              />
+          )
+        }        
       </div>
-     
-    </div>
-    
-    </div>
-     <div className={styles.footerStyle}>
-     <Footer />
-   </div>
-   </>
+      <Footer />
+    </>
   );
 };
-
+          
 export default Parksapi;
+          

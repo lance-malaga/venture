@@ -27,10 +27,12 @@
 }
 .parks_layout button {
     color: var(--color-white);
-    padding: 18px 60px;
     text-align: center;
-    background-color: var(--color-black);
     transition: .3s all ease-in-out;
+}
+.parks_layout button a {
+    padding: 18px 60px;
+    background-color: var(--color-black);
 }
 .parks_layout button:hover {
     opacity: 0.7;
