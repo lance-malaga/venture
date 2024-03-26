@@ -135,7 +135,8 @@ font-size: 0.9rem;
 
 
 .mapContainer {
-  height: 640px;
+  /* height: 640px; */
+  width: 65%;
 }
 
 
