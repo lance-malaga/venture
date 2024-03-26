@@ -132,7 +132,7 @@ export default function AvgRent() {
                                             {citiesRent
                                                 .filter(cityData => cityData.city === selectedCity)
                                                 .map(cityData => (
-                                                    <div>{cityData.info}</div>
+                                                    <div key={cityData.city}>{cityData.info}</div>
                                                 ))
                                             }
                                         </div>
