@@ -94,7 +94,6 @@ export default function AvgRent() {
     };
 
     const cityData = selectedCity == 'West Vancouver' || selectedCity == 'Delta' ? citiesMissing.filter(data => data.city === selectedCity) : '';
-    console.log(costData)
 
     return (
         <>
@@ -118,25 +117,25 @@ export default function AvgRent() {
                                             style={{marginTop: '25%'}}>
                                         AVERAGE RENT
                                         </div>
-                                        { costData && (
-                                            <div className={styles.content_api}>
-                                                <div>
-                                                    <h2>
-                                                        ${selectedCity === 'West Vancouver' || selectedCity === 'Delta' ? (
-                                                            cityData && cityData[0]?.rent
-                                                        ) : (
-                                                            costData["Cost of Living Month Total"]
-                                                        )}
-                                                    </h2>
-                                                </div>
-                                                {citiesRent
-                                                    .filter(cityData => cityData.city === selectedCity)
-                                                    .map(cityData => (
-                                                        <div>{cityData.info}</div>
-                                                    ))
-                                                }
+
+                                        <div className={styles.content_api}>
+                                            <div>
+                                                <h2>
+                                                    ${selectedCity == 'West Vancouver' || selectedCity == 'Delta' ? (
+                                                        cityData && cityData[0].rent
+                                                    ) : (
+                                                        costData && costData["Cost of Living Month Total"]
+                                                    )}
+                                                </h2>
+
                                             </div>
-                                        )}
+                                            {citiesRent
+                                                .filter(cityData => cityData.city === selectedCity)
+                                                .map(cityData => (
+                                                    <div>{cityData.info}</div>
+                                                ))
+                                            }
+                                        </div>
 
                                         <div
                                             style={{
