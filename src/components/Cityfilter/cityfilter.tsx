@@ -6,7 +6,7 @@ interface DropdownProps {
 }
 
 const CityFilter: React.FC<DropdownProps> = ({ options, onSelect }) => {
-  const [selectedOption, setSelectedOption] = useState<string>('');
+  const [selectedOption, setSelectedOption] = useState<string>('Vancouver');
 
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedValue = event.target.value;
@@ -20,7 +20,6 @@ const CityFilter: React.FC<DropdownProps> = ({ options, onSelect }) => {
       <select value={selectedOption}
               onChange={handleSelectChange}
               style={{ background: 'transparent', border: 'none', borderBottom: '1px solid black', outline:'none' }}>
-       {selectedOption === "" && <option value="">Select a city</option>}
         {options.map((option, index) => (
         <option key={index} value={option}>
           {option.toUpperCase()}
