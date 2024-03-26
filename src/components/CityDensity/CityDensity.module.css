@@ -1,0 +1,53 @@
+.city_density_container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+
+.city_density_info {
+    max-width: 390px;
+    max-height: 640px;
+    border: 2px solid black;
+    padding: 20px;
+    margin-top:10px;
+    
+}
+
+.city_density_togglebutton{
+    width: 190px;
+    height: 56px;
+    background-color: black;
+    color: white;
+    margin-top: 35%;
+     
+
+}
+
+
+
+@media (max-width: 1260px) {
+    .city_density_container {
+        flex-direction: column-reverse;
+    }
+
+    .city_density_info{
+        max-width: 860px;
+        max-height: 390px;
+    }
+
+    .city_density_txt{
+        display: flex;
+        gap: 10%;
+    }
+
+    .city_density_togglebutton{
+        margin-top: 0;
+    }
+    .city_compare_info {
+        display: flex;
+        
+    }
+
+}
